@@ -1,0 +1,15 @@
+React, redux on the frontend.
+Postgresql on the backend.
+
+Pages:
+Home - Listing of all the products
+Details - Show specific information based on product id
+Cart - List all products 
+Checkout - payments with stripe integration
+Admin Panel?
+
+TODO: App styling
+
+Redux: Keep the track of 
+
+Features: Authentication, Cloud Storage, Filtering. 
