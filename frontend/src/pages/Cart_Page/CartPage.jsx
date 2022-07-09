@@ -3,32 +3,32 @@ import React from "react";
 const CartPage = () => {
   return (
     <>
-      <header class="header-section">
-        <div class="header-top">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-2 text-center text-lg-left">
-                <a href="./index.html" class="site-logo">
+      <header className="header-section">
+        <div className="header-top">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-2 text-center text-lg-left">
+                <a href="./index.html" className="site-logo">
                   <img src="img/logo.png" alt="" />
                 </a>
               </div>
-              <div class="col-xl-6 col-lg-5">
-                <form class="header-search-form">
+              <div className="col-xl-6 col-lg-5">
+                <form className="header-search-form">
                   <input type="text" placeholder="Search on divisima ...." />
                   <button>
-                    <i class="flaticon-search"></i>
+                    <i className="flaticon-search"></i>
                   </button>
                 </form>
               </div>
-              <div class="col-xl-4 col-lg-5">
-                <div class="user-panel">
-                  <div class="up-item">
-                    <i class="flaticon-profile"></i>
+              <div className="col-xl-4 col-lg-5">
+                <div className="user-panel">
+                  <div className="up-item">
+                    <i className="flaticon-profile"></i>
                     <a href="#">Sign</a> In or <a href="#">Create Account</a>
                   </div>
-                  <div class="up-item">
-                    <div class="shopping-card">
-                      <i class="flaticon-bag"></i>
+                  <div className="up-item">
+                    <div className="shopping-card">
+                      <i className="flaticon-bag"></i>
                       <span>0</span>
                     </div>
                     <a href="#">Shopping Cart</a>
@@ -38,9 +38,9 @@ const CartPage = () => {
             </div>
           </div>
         </div>
-        <nav class="main-navbar">
-          <div class="container">
-            <ul class="main-menu">
+        <nav className="main-navbar">
+          <div className="container">
+            <ul className="main-menu">
               <li>
                 <a href="#">Home</a>
               </li>
@@ -53,12 +53,12 @@ const CartPage = () => {
               <li>
                 <a href="#">
                   Jewelry
-                  <span class="new">New</span>
+                  <span className="new">New</span>
                 </a>
               </li>
               <li>
                 <a href="#">Shoes</a>
-                <ul class="sub-menu">
+                <ul className="sub-menu">
                   <li>
                     <a href="#">Sneakers</a>
                   </li>
@@ -78,7 +78,7 @@ const CartPage = () => {
               </li>
               <li>
                 <a href="#">Pages</a>
-                <ul class="sub-menu">
+                <ul className="sub-menu">
                   <li>
                     <a href="./product.html">Product Page</a>
                   </li>
@@ -104,117 +104,117 @@ const CartPage = () => {
         </nav>
       </header>
 
-      <div class="page-top-info">
-        <div class="container">
+      <div className="page-top-info">
+        <div className="container">
           <h4>Your cart</h4>
-          <div class="site-pagination">
+          <div className="site-pagination">
             <a href="">Home</a> /<a href="">Your cart</a>
           </div>
         </div>
       </div>
 
-      <section class="cart-section spad">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="cart-table">
+      <section className="cart-section spad">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8">
+              <div className="cart-table">
                 <h3>Your Cart</h3>
-                <div class="cart-table-warp">
+                <div className="cart-table-warp">
                   <table>
                     <thead>
                       <tr>
-                        <th class="product-th">Product</th>
-                        <th class="quy-th">Quantity</th>
-                        <th class="size-th">SizeSize</th>
-                        <th class="total-th">Price</th>
+                        <th className="product-th">Product</th>
+                        <th className="quy-th">Quantity</th>
+                        <th className="size-th">SizeSize</th>
+                        <th className="total-th">Price</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td class="product-col">
+                        <td className="product-col">
                           <img src="img/cart/1.jpg" alt="" />
-                          <div class="pc-title">
+                          <div className="pc-title">
                             <h4>Animal Print Dress</h4>
                             <p>$45.90</p>
                           </div>
                         </td>
-                        <td class="quy-col">
-                          <div class="quantity">
-                            <div class="pro-qty">
+                        <td className="quy-col">
+                          <div className="quantity">
+                            <div className="pro-qty">
                               <input type="text" value="1" />
                             </div>
                           </div>
                         </td>
-                        <td class="size-col">
+                        <td className="size-col">
                           <h4>Size M</h4>
                         </td>
-                        <td class="total-col">
+                        <td className="total-col">
                           <h4>$45.90</h4>
                         </td>
                       </tr>
                       <tr>
-                        <td class="product-col">
+                        <td className="product-col">
                           <img src="img/cart/2.jpg" alt="" />
-                          <div class="pc-title">
+                          <div className="pc-title">
                             <h4>Ruffle Pink Top</h4>
                             <p>$45.90</p>
                           </div>
                         </td>
-                        <td class="quy-col">
-                          <div class="quantity">
-                            <div class="pro-qty">
+                        <td className="quy-col">
+                          <div className="quantity">
+                            <div className="pro-qty">
                               <input type="text" value="1" />
                             </div>
                           </div>
                         </td>
-                        <td class="size-col">
+                        <td className="size-col">
                           <h4>Size M</h4>
                         </td>
-                        <td class="total-col">
+                        <td className="total-col">
                           <h4>$45.90</h4>
                         </td>
                       </tr>
                       <tr>
-                        <td class="product-col">
+                        <td className="product-col">
                           <img src="img/cart/3.jpg" alt="" />
-                          <div class="pc-title">
+                          <div className="pc-title">
                             <h4>Skinny Jeans</h4>
                             <p>$45.90</p>
                           </div>
                         </td>
-                        <td class="quy-col">
-                          <div class="quantity">
-                            <div class="pro-qty">
+                        <td className="quy-col">
+                          <div className="quantity">
+                            <div className="pro-qty">
                               <input type="text" value="1" />
                             </div>
                           </div>
                         </td>
-                        <td class="size-col">
+                        <td className="size-col">
                           <h4>Size M</h4>
                         </td>
-                        <td class="total-col">
+                        <td className="total-col">
                           <h4>$45.90</h4>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <div class="total-cost">
+                <div className="total-cost">
                   <h6>
-                    Total <span>$99.90</span>
+                    Total with tax <span>$99.90</span>
                   </h6>
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 card-right">
-              <form class="promo-code-form">
+            <div className="col-lg-4 card-right">
+              <form className="promo-code-form">
                 <input type="text" placeholder="Enter promo code" />
                 <button>Submit</button>
               </form>
-              <a href="" class="site-btn">
+              <a href="" className="site-btn">
                 Proceed to checkout
               </a>
-              <a href="" class="site-btn sb-dark">
+              <a href="" className="site-btn sb-dark">
                 Continue shopping
               </a>
             </div>
@@ -222,88 +222,88 @@ const CartPage = () => {
         </div>
       </section>
 
-      <section class="related-product-section">
-        <div class="container">
-          <div class="section-title text-uppercase">
+      <section className="related-product-section">
+        <div className="container">
+          <div className="section-title text-uppercase">
             <h2>Continue Shopping</h2>
           </div>
-          <div class="row">
-            <div class="col-lg-3 col-sm-6">
-              <div class="product-item">
-                <div class="pi-pic">
-                  <div class="tag-new">New</div>
+          <div className="row">
+            <div className="col-lg-3 col-sm-6">
+              <div className="product-item">
+                <div className="pi-pic">
+                  <div className="tag-new">New</div>
                   <img src="./img/product/2.jpg" alt="" />
-                  <div class="pi-links">
-                    <a href="#" class="add-card">
-                      <i class="flaticon-bag"></i>
+                  <div className="pi-links">
+                    <a href="#" className="add-card">
+                      <i className="flaticon-bag"></i>
                       <span>ADD TO CART</span>
                     </a>
-                    <a href="#" class="wishlist-btn">
-                      <i class="flaticon-heart"></i>
+                    <a href="#" className="wishlist-btn">
+                      <i className="flaticon-heart"></i>
                     </a>
                   </div>
                 </div>
-                <div class="pi-text">
+                <div className="pi-text">
                   <h6>$35,00</h6>
                   <p>Black and White Stripes Dress</p>
                 </div>
               </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="product-item">
-                <div class="pi-pic">
+            <div className="col-lg-3 col-sm-6">
+              <div className="product-item">
+                <div className="pi-pic">
                   <img src="./img/product/5.jpg" alt="" />
-                  <div class="pi-links">
-                    <a href="#" class="add-card">
-                      <i class="flaticon-bag"></i>
+                  <div className="pi-links">
+                    <a href="#" className="add-card">
+                      <i className="flaticon-bag"></i>
                       <span>ADD TO CART</span>
                     </a>
-                    <a href="#" class="wishlist-btn">
-                      <i class="flaticon-heart"></i>
+                    <a href="#" className="wishlist-btn">
+                      <i className="flaticon-heart"></i>
                     </a>
                   </div>
                 </div>
-                <div class="pi-text">
+                <div className="pi-text">
                   <h6>$35,00</h6>
                   <p>Flamboyant Pink Top </p>
                 </div>
               </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="product-item">
-                <div class="pi-pic">
+            <div className="col-lg-3 col-sm-6">
+              <div className="product-item">
+                <div className="pi-pic">
                   <img src="./img/product/9.jpg" alt="" />
-                  <div class="pi-links">
-                    <a href="#" class="add-card">
-                      <i class="flaticon-bag"></i>
+                  <div className="pi-links">
+                    <a href="#" className="add-card">
+                      <i className="flaticon-bag"></i>
                       <span>ADD TO CART</span>
                     </a>
-                    <a href="#" class="wishlist-btn">
-                      <i class="flaticon-heart"></i>
+                    <a href="#" className="wishlist-btn">
+                      <i className="flaticon-heart"></i>
                     </a>
                   </div>
                 </div>
-                <div class="pi-text">
+                <div className="pi-text">
                   <h6>$35,00</h6>
                   <p>Flamboyant Pink Top </p>
                 </div>
               </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="product-item">
-                <div class="pi-pic">
+            <div className="col-lg-3 col-sm-6">
+              <div className="product-item">
+                <div className="pi-pic">
                   <img src="./img/product/1.jpg" alt="" />
-                  <div class="pi-links">
-                    <a href="#" class="add-card">
-                      <i class="flaticon-bag"></i>
+                  <div className="pi-links">
+                    <a href="#" className="add-card">
+                      <i className="flaticon-bag"></i>
                       <span>ADD TO CART</span>
                     </a>
-                    <a href="#" class="wishlist-btn">
-                      <i class="flaticon-heart"></i>
+                    <a href="#" className="wishlist-btn">
+                      <i className="flaticon-heart"></i>
                     </a>
                   </div>
                 </div>
-                <div class="pi-text">
+                <div className="pi-text">
                   <h6>$35,00</h6>
                   <p>Flamboyant Pink Top </p>
                 </div>
@@ -313,16 +313,16 @@ const CartPage = () => {
         </div>
       </section>
 
-      <section class="footer-section">
-        <div class="container">
-          <div class="footer-logo text-center">
+      <section className="footer-section">
+        <div className="container">
+          <div className="footer-logo text-center">
             <a href="index.html">
               <img src="./img/logo-light.png" alt="" />
             </a>
           </div>
-          <div class="row">
-            <div class="col-lg-3 col-sm-6">
-              <div class="footer-widget about-widget">
+          <div className="row">
+            <div className="col-lg-3 col-sm-6">
+              <div className="footer-widget about-widget">
                 <h2>About</h2>
                 <p>
                   Donec vitae purus nunc. Morbi faucibus erat sit amet congue
@@ -332,8 +332,8 @@ const CartPage = () => {
                 <img src="img/cards.png" alt="" />
               </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="footer-widget about-widget">
+            <div className="col-lg-3 col-sm-6">
+              <div className="footer-widget about-widget">
                 <h2>Questions</h2>
                 <ul>
                   <li>
@@ -374,32 +374,32 @@ const CartPage = () => {
                 </ul>
               </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="footer-widget about-widget">
+            <div className="col-lg-3 col-sm-6">
+              <div className="footer-widget about-widget">
                 <h2>Questions</h2>
-                <div class="fw-latest-post-widget">
-                  <div class="lp-item">
+                <div className="fw-latest-post-widget">
+                  <div className="lp-item">
                     <div
-                      class="lp-thumb set-bg"
+                      className="lp-thumb set-bg"
                       data-setbg="img/blog-thumbs/1.jpg"
                     ></div>
-                    <div class="lp-content">
+                    <div className="lp-content">
                       <h6>what shoes to wear</h6>
                       <span>Oct 21, 2018</span>
-                      <a href="#" class="readmore">
+                      <a href="#" className="readmore">
                         Read More
                       </a>
                     </div>
                   </div>
-                  <div class="lp-item">
+                  <div className="lp-item">
                     <div
-                      class="lp-thumb set-bg"
+                      className="lp-thumb set-bg"
                       data-setbg="img/blog-thumbs/2.jpg"
                     ></div>
-                    <div class="lp-content">
+                    <div className="lp-content">
                       <h6>trends this year</h6>
                       <span>Oct 21, 2018</span>
-                      <a href="#" class="readmore">
+                      <a href="#" className="readmore">
                         Read More
                       </a>
                     </div>
@@ -407,22 +407,22 @@ const CartPage = () => {
                 </div>
               </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="footer-widget contact-widget">
+            <div className="col-lg-3 col-sm-6">
+              <div className="footer-widget contact-widget">
                 <h2>Questions</h2>
-                <div class="con-info">
+                <div className="con-info">
                   <span>C.</span>
                   <p>Your Company Ltd </p>
                 </div>
-                <div class="con-info">
+                <div className="con-info">
                   <span>B.</span>
                   <p>1481 Creekside Lane Avila Beach, CA 93424, P.O. BOX 68 </p>
                 </div>
-                <div class="con-info">
+                <div className="con-info">
                   <span>T.</span>
                   <p>+53 345 7953 32453</p>
                 </div>
-                <div class="con-info">
+                <div className="con-info">
                   <span>E.</span>
                   <p>office@youremail.com</p>
                 </div>
@@ -430,44 +430,44 @@ const CartPage = () => {
             </div>
           </div>
         </div>
-        <div class="social-links-warp">
-          <div class="container">
-            <div class="social-links">
-              <a href="" class="instagram">
-                <i class="fa fa-instagram"></i>
+        <div className="social-links-warp">
+          <div className="container">
+            <div className="social-links">
+              <a href="" className="instagram">
+                <i className="fa fa-instagram"></i>
                 <span>instagram</span>
               </a>
-              <a href="" class="google-plus">
-                <i class="fa fa-google-plus"></i>
+              <a href="" className="google-plus">
+                <i className="fa fa-google-plus"></i>
                 <span>g+plus</span>
               </a>
-              <a href="" class="pinterest">
-                <i class="fa fa-pinterest"></i>
+              <a href="" className="pinterest">
+                <i className="fa fa-pinterest"></i>
                 <span>pinterest</span>
               </a>
-              <a href="" class="facebook">
-                <i class="fa fa-facebook"></i>
+              <a href="" className="facebook">
+                <i className="fa fa-facebook"></i>
                 <span>facebook</span>
               </a>
-              <a href="" class="twitter">
-                <i class="fa fa-twitter"></i>
+              <a href="" className="twitter">
+                <i className="fa fa-twitter"></i>
                 <span>twitter</span>
               </a>
-              <a href="" class="youtube">
-                <i class="fa fa-youtube"></i>
+              <a href="" className="youtube">
+                <i className="fa fa-youtube"></i>
                 <span>youtube</span>
               </a>
-              <a href="" class="tumblr">
-                <i class="fa fa-tumblr-square"></i>
+              <a href="" className="tumblr">
+                <i className="fa fa-tumblr-square"></i>
                 <span>tumblr</span>
               </a>
             </div>
 
-            <p class="text-white text-center mt-5">
+            <p className="text-white text-center mt-5">
               Copyright &copy;
               <script>document.write(new Date().getFullYear());</script> All
               rights reserved | This template is made with{" "}
-              <i class="fa fa-heart-o" aria-hidden="true"></i> by{" "}
+              <i className="fa fa-heart-o" aria-hidden="true"></i> by{" "}
               <a href="https://colorlib.com" target="_blank">
                 Colorlib
               </a>

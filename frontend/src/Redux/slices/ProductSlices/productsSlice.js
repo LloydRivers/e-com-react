@@ -11,7 +11,7 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
-export const deleteProduct = createAsyncThunk(
+export const deleteProductThunk = createAsyncThunk(
   "products/deleteProduct",
   async (id) => {
     await axios.delete(`https://dummyjson.com/products/${id}`);
@@ -19,7 +19,7 @@ export const deleteProduct = createAsyncThunk(
   }
 );
 
-export const postProduct = createAsyncThunk(
+export const postProductThunk = createAsyncThunk(
   "products/postProduct",
   async (product) => {
     await axios.post("https://dummyjson.com/products", product);
@@ -27,7 +27,7 @@ export const postProduct = createAsyncThunk(
   }
 );
 
-export const putProduct = createAsyncThunk(
+export const putProductThunk = createAsyncThunk(
   "products/putProduct",
   async (product) => {
     await axios.put(`https://dummyjson.com/products/${product.id}`, product);
@@ -43,7 +43,24 @@ const productsSlice = createSlice({
     isError: false,
     errorMessage: "",
   },
-  reducers: {},
+  reducers: {
+    deleteProduct: (state, action) => {
+      state.products = state.products.filter(
+        (product) => product.id !== action.payload
+      );
+    },
+    postProduct: (state, action) => {
+      state.products.push(action.payload);
+    },
+    putProduct: (state, action) => {
+      state.products = state.products.map((product) => {
+        if (product.id === action.payload.id) {
+          return action.payload;
+        }
+        return product;
+      });
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state, action) => {
       state.loading = true;
@@ -60,10 +77,10 @@ const productsSlice = createSlice({
       state.errorMessage = action.error.message;
       state.loading = false;
     });
-    builder.addCase(deleteProduct.pending, (state, action) => {
+    builder.addCase(deleteProductThunk.pending, (state, action) => {
       state.loading = true;
     });
-    builder.addCase(deleteProduct.fulfilled, (state, action) => {
+    builder.addCase(deleteProductThunk.fulfilled, (state, action) => {
       console.log(action.payload);
       console.log("request successful!");
       state.products = state.products.filter(
@@ -71,31 +88,31 @@ const productsSlice = createSlice({
       );
       state.loading = false;
     });
-    builder.addCase(deleteProduct.rejected, (state, action) => {
+    builder.addCase(deleteProductThunk.rejected, (state, action) => {
       state.isError = true;
       console.log(action.error);
       state.errorMessage = action.error.message;
       state.loading = false;
     });
-    builder.addCase(postProduct.pending, (state, action) => {
+    builder.addCase(postProductThunk.pending, (state, action) => {
       state.loading = true;
     });
-    builder.addCase(postProduct.fulfilled, (state, action) => {
+    builder.addCase(postProductThunk.fulfilled, (state, action) => {
       console.log(action.payload);
       console.log("request successful!");
       state.products.push(action.payload);
       state.loading = false;
     });
-    builder.addCase(postProduct.rejected, (state, action) => {
+    builder.addCase(postProductThunk.rejected, (state, action) => {
       state.isError = true;
       console.log(action.error);
       state.errorMessage = action.error.message;
       state.loading = false;
     });
-    builder.addCase(putProduct.pending, (state, action) => {
+    builder.addCase(putProductThunk.pending, (state, action) => {
       state.loading = true;
     });
-    builder.addCase(putProduct.fulfilled, (state, action) => {
+    builder.addCase(putProductThunk.fulfilled, (state, action) => {
       console.log(action.payload);
       console.log("request successful!");
       state.products = state.products.map((product) =>
@@ -103,7 +120,7 @@ const productsSlice = createSlice({
       );
       state.loading = false;
     });
-    builder.addCase(putProduct.rejected, (state, action) => {
+    builder.addCase(putProductThunk.rejected, (state, action) => {
       state.isError = true;
       console.log(action.error);
       state.errorMessage = action.error.message;
@@ -111,5 +128,5 @@ const productsSlice = createSlice({
     });
   },
 });
-
+export const { deleteProduct, postProduct, putProduct } = productsSlice.actions;
 export default productsSlice.reducer;
