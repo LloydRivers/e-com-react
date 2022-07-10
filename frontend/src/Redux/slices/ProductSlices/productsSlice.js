@@ -129,4 +129,10 @@ const productsSlice = createSlice({
   },
 });
 export const { deleteProduct, postProduct, putProduct } = productsSlice.actions;
+// The firs product is the name of the slice, the second is the initial state.
+export const selectProducts = (state) => state.products.products;
+export const selectLoading = (state) => state.products.loading;
+export const selectIsError = (state) => state.products.isError;
+export const selectErrorMessage = (state) => state.products.errorMessage;
+
 export default productsSlice.reducer;

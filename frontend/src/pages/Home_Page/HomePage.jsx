@@ -1,8 +1,27 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { fetchProducts } from "../../Redux/slices/ProductSlices/productsSlice";
+import { ProductCard } from "components";
+import { useSelector, useDispatch } from "react-redux";
+
+import {
+  fetchProducts,
+  selectProducts,
+  selectLoading,
+  selectIsError,
+  selectErrorMessage,
+} from "../../Redux/slices/ProductSlices/productsSlice";
 
 const HomePage = () => {
+  const products = useSelector(selectProducts);
+  const loading = useSelector(selectLoading);
+  const isError = useSelector(selectIsError);
+  const errorMessage = useSelector(selectErrorMessage);
+  const dispatch = useDispatch();
+  console.log(products);
+  useEffect(() => {
+    console.log("UseEffect called");
+
+    dispatch(fetchProducts());
+  }, []);
   return (
     <>
       <section className="hero-section">
@@ -231,26 +250,11 @@ const HomePage = () => {
             </li>
           </ul>
           <div className="row">
-            <div className="col-lg-3 col-sm-6">
-              <div className="product-item">
-                <div className="pi-pic">
-                  <img src="/img/product/5.jpg" alt="" />
-                  <div className="pi-links">
-                    <a href="#" className="add-card">
-                      <i className="flaticon-bag"></i>
-                      <span>ADD TO CART</span>
-                    </a>
-                    <a href="#" className="wishlist-btn">
-                      <i className="flaticon-heart"></i>
-                    </a>
-                  </div>
-                </div>
-                <div className="pi-text">
-                  <h6>$35,00</h6>
-                  <p>Flamboyant Pink Top</p>
-                </div>
-              </div>
-            </div>
+            {/* LOOP GOES HERE */}
+            {/* LOOP GOES HERE */}
+            {/* LOOP GOES HERE */}
+            {/* LOOP GOES HERE */}
+            <ProductCard />
             <div className="col-lg-3 col-sm-6">
               <div className="product-item">
                 <div className="pi-pic">
