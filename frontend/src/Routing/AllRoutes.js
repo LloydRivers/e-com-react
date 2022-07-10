@@ -8,9 +8,12 @@ import {
   ContactPage,
 } from "../pages";
 
+import { Footer, Header } from "components";
+
 const AllRoutes = () => {
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cart" element={<CartPage />} />
@@ -18,6 +21,7 @@ const AllRoutes = () => {
         <Route path="/checkout" element={<CheckOutPage />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };

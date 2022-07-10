@@ -7,6 +7,7 @@ Details - Show specific information based on product id
 Cart - List all products 
 Checkout - payments with stripe integration
 Admin Panel?
+Category Page?
 
 TODO: App styling
 
