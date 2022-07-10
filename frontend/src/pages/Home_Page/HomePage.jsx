@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ProductCard } from "components";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -11,7 +11,11 @@ import {
 } from "../../Redux/slices/ProductSlices/productsSlice";
 
 const HomePage = () => {
+  const [itemsToShow, setItemsToShow] = useState(8);
+  const [expanded, setExpanded] = useState(false);
+
   const products = useSelector(selectProducts);
+  console.log("type of is here: ", products);
   const loading = useSelector(selectLoading);
   const isError = useSelector(selectIsError);
   const errorMessage = useSelector(selectErrorMessage);
@@ -22,6 +26,16 @@ const HomePage = () => {
 
     dispatch(fetchProducts());
   }, []);
+
+  const showMore = () => {
+    if (itemsToShow === 8) {
+      setItemsToShow(products.length);
+      setExpanded(true);
+    } else {
+      setItemsToShow(8);
+      setExpanded(false);
+    }
+  };
   return (
     <>
       <section className="hero-section">
@@ -250,6 +264,9 @@ const HomePage = () => {
             </li>
           </ul>
           <div className="row">
+            {products.slice(0, itemsToShow).map((product, index) => (
+              <ProductCard />
+            ))}
             {/* LOOP GOES HERE */}
             {/* LOOP GOES HERE */}
             {/* LOOP GOES HERE */}
@@ -398,7 +415,9 @@ const HomePage = () => {
             </div>
           </div>
           <div className="text-center pt-5">
-            <button className="site-btn sb-line sb-dark">LOAD MORE</button>
+            <button onClick={showMore} className="site-btn sb-line sb-dark">
+              {expanded ? "SHOW MORE" : "SHOW LESS"}
+            </button>
           </div>
         </div>
       </section>

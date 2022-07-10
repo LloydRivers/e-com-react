@@ -6,8 +6,7 @@ export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
     const { data } = await axios.get("https://dummyjson.com/products");
-    console.log(data);
-    return data;
+    return data.products;
   }
 );
 
@@ -66,8 +65,6 @@ const productsSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      console.log(action.payload);
-      console.log("request successful!");
       state.products = action.payload;
       state.loading = false;
     });
@@ -129,7 +126,6 @@ const productsSlice = createSlice({
   },
 });
 export const { deleteProduct, postProduct, putProduct } = productsSlice.actions;
-// The firs product is the name of the slice, the second is the initial state.
 export const selectProducts = (state) => state.products.products;
 export const selectLoading = (state) => state.products.loading;
 export const selectIsError = (state) => state.products.isError;
