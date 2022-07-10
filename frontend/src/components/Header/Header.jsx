@@ -44,10 +44,10 @@ const Header = () => {
               <a href="#">Home</a>
             </li>
             <li>
-              <a href="#">Women</a>
+              <a href="#">Checkout</a>
             </li>
             <li>
-              <a href="#">Men</a>
+              <a href="#">Cart</a>
             </li>
             <li>
               <a href="#">
@@ -55,7 +55,7 @@ const Header = () => {
                 <span className="new">New</span>
               </a>
             </li>
-            <li>
+            {/* <li>
               <a href="#">Shoes</a>
               <ul className="sub-menu">
                 <li>
@@ -74,8 +74,8 @@ const Header = () => {
                   <a href="#">Flip Flops</a>
                 </li>
               </ul>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <a href="#">Pages</a>
               <ul className="sub-menu">
                 <li>
@@ -94,7 +94,7 @@ const Header = () => {
                   <a href="./contact.html">Contact Page</a>
                 </li>
               </ul>
-            </li>
+            </li> */}
             <li>
               <a href="#">Blog</a>
             </li>
