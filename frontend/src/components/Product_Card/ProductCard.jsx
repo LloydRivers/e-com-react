@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { addProduct } from "Redux/slices/ProductSlices/productSlice";
+import { addProduct } from "../../Redux/slices/ProductSlices/productSlice";
+import { addToCart } from "../../Redux/slices/CartSlices/cartSlice";
 import { useDispatch } from "react-redux";
 
 const ProductCard = ({ product }) => {
@@ -13,7 +14,10 @@ const ProductCard = ({ product }) => {
         <div className="pi-pic">
           <img src="//unsplash.it/500/300" alt="product" />
           <div className="pi-links">
-            <a href="#" className="add-card">
+            <a
+              className="add-card"
+              onClick={() => dispatch(addToCart(product))}
+            >
               <i className="flaticon-bag"></i>
               <span>ADD TO CART</span>
             </a>
