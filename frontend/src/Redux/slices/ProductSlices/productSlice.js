@@ -18,7 +18,12 @@ const productSlice = createSlice({
     isError: false,
     errorMessage: "",
   },
-  reducers: {},
+  reducers: {
+    addProduct: (state, action) => {
+      console.log("INSIDE PRODUCT SLICE", action.payload);
+      state.product = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchProduct.pending, (state, action) => {
       state.loading = true;
@@ -35,5 +40,8 @@ const productSlice = createSlice({
     });
   },
 });
+
+export const { addProduct } = productSlice.actions;
+export const selectProduct = (state) => state.product.product;
 
 export default productSlice.reducer;

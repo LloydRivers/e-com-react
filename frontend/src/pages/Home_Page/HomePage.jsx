@@ -15,15 +15,13 @@ const HomePage = () => {
   const [expanded, setExpanded] = useState(false);
 
   const products = useSelector(selectProducts);
-  console.log("type of is here: ", products);
+
   const loading = useSelector(selectLoading);
   const isError = useSelector(selectIsError);
   const errorMessage = useSelector(selectErrorMessage);
   const dispatch = useDispatch();
   console.log(products);
   useEffect(() => {
-    console.log("UseEffect called");
-
     dispatch(fetchProducts());
   }, []);
 
@@ -264,159 +262,13 @@ const HomePage = () => {
             </li>
           </ul>
           <div className="row">
-            {products.slice(0, itemsToShow).map((product, index) => (
-              <ProductCard />
+            {products.slice(0, itemsToShow).map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
-            {/* LOOP GOES HERE */}
-            {/* LOOP GOES HERE */}
-            {/* LOOP GOES HERE */}
-            {/* LOOP GOES HERE */}
-            <ProductCard />
-            <div className="col-lg-3 col-sm-6">
-              <div className="product-item">
-                <div className="pi-pic">
-                  <div className="tag-sale">ON SALE</div>
-                  <img src="/img/product/6.jpg" alt="" />
-                  <div className="pi-links">
-                    <a href="#" className="add-card">
-                      <i className="flaticon-bag"></i>
-                      <span>ADD TO CART</span>
-                    </a>
-                    <a href="#" className="wishlist-btn">
-                      <i className="flaticon-heart"></i>
-                    </a>
-                  </div>
-                </div>
-                <div className="pi-text">
-                  <h6>$35,00</h6>
-                  <p>Black and White Stripes Dress</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-6">
-              <div className="product-item">
-                <div className="pi-pic">
-                  <img src="/img/product/7.jpg" alt="" />
-                  <div className="pi-links">
-                    <a href="#" className="add-card">
-                      <i className="flaticon-bag"></i>
-                      <span>ADD TO CART</span>
-                    </a>
-                    <a href="#" className="wishlist-btn">
-                      <i className="flaticon-heart"></i>
-                    </a>
-                  </div>
-                </div>
-                <div className="pi-text">
-                  <h6>$35,00</h6>
-                  <p>Flamboyant Pink Top</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-6">
-              <div className="product-item">
-                <div className="pi-pic">
-                  <img src="/img/product/8.jpg" alt="" />
-                  <div className="pi-links">
-                    <a href="#" className="add-card">
-                      <i className="flaticon-bag"></i>
-                      <span>ADD TO CART</span>
-                    </a>
-                    <a href="#" className="wishlist-btn">
-                      <i className="flaticon-heart"></i>
-                    </a>
-                  </div>
-                </div>
-                <div className="pi-text">
-                  <h6>$35,00</h6>
-                  <p>Flamboyant Pink Top</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-6">
-              <div className="product-item">
-                <div className="pi-pic">
-                  <img src="/img/product/9.jpg" alt="" />
-                  <div className="pi-links">
-                    <a href="#" className="add-card">
-                      <i className="flaticon-bag"></i>
-                      <span>ADD TO CART</span>
-                    </a>
-                    <a href="#" className="wishlist-btn">
-                      <i className="flaticon-heart"></i>
-                    </a>
-                  </div>
-                </div>
-                <div className="pi-text">
-                  <h6>$35,00</h6>
-                  <p>Flamboyant Pink Top</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-6">
-              <div className="product-item">
-                <div className="pi-pic">
-                  <img src="/img/product/10.jpg" alt="" />
-                  <div className="pi-links">
-                    <a href="#" className="add-card">
-                      <i className="flaticon-bag"></i>
-                      <span>ADD TO CART</span>
-                    </a>
-                    <a href="#" className="wishlist-btn">
-                      <i className="flaticon-heart"></i>
-                    </a>
-                  </div>
-                </div>
-                <div className="pi-text">
-                  <h6>$35,00</h6>
-                  <p>Black and White Stripes Dress</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-6">
-              <div className="product-item">
-                <div className="pi-pic">
-                  <img src="/img/product/11.jpg" alt="" />
-                  <div className="pi-links">
-                    <a href="#" className="add-card">
-                      <i className="flaticon-bag"></i>
-                      <span>ADD TO CART</span>
-                    </a>
-                    <a href="#" className="wishlist-btn">
-                      <i className="flaticon-heart"></i>
-                    </a>
-                  </div>
-                </div>
-                <div className="pi-text">
-                  <h6>$35,00</h6>
-                  <p>Flamboyant Pink Top</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-6">
-              <div className="product-item">
-                <div className="pi-pic">
-                  <img src="/img/product/12.jpg" alt="" />
-                  <div className="pi-links">
-                    <a href="#" className="add-card">
-                      <i className="flaticon-bag"></i>
-                      <span>ADD TO CART</span>
-                    </a>
-                    <a href="#" className="wishlist-btn">
-                      <i className="flaticon-heart"></i>
-                    </a>
-                  </div>
-                </div>
-                <div className="pi-text">
-                  <h6>$35,00</h6>
-                  <p>Flamboyant Pink Top</p>
-                </div>
-              </div>
-            </div>
           </div>
           <div className="text-center pt-5">
             <button onClick={showMore} className="site-btn sb-line sb-dark">
-              {expanded ? "SHOW MORE" : "SHOW LESS"}
+              {expanded ? "SHOW LESS" : "SHOW MORE"}
             </button>
           </div>
         </div>

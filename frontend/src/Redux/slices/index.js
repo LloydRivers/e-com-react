@@ -1,5 +1,5 @@
-import productsReducer from "../slices/ProductSlices/productsSlice";
-import productReducer from "../slices/ProductSlices/productSlice";
-import cartSliceReducer from "../slices/CartSlices/cartSlice";
+import productsReducer from "./ProductSlices/productsSlice";
+import productReducer, { selectProduct } from "./ProductSlices/productSlice";
+import cartSliceReducer from "./CartSlices/cartSlice";
 
-export { productsReducer, productReducer, cartSliceReducer };
+export { productsReducer, productReducer, cartSliceReducer, selectProduct };

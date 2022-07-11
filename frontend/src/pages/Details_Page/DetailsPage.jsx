@@ -1,11 +1,29 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
+// brand: "Apple"
+// category: "smartphones"
+// description: "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ..."
+// discountPercentage: 17.94
+// id: 2
+// images: (4) ['https://dummyjson.com/image/i/products/2/1.jpg', 'https://dummyjson.com/image/i/products/2/2.jpg', 'https://dummyjson.com/image/i/products/2/3.jpg', 'https://dummyjson.com/image/i/products/2/thumbnail.jpg']
+// price: 899
+// rating: 4.44
+// stock: 34
+// thumbnail: "https://dummyjson.com/image/i/products/2/thumbnail.jpg"
+// title: "iPhone X"
+
+import { selectProduct } from "../../Redux/slices/ProductSlices/productSlice";
 
 const DetailsPage = () => {
+  const product = useSelector(selectProduct);
+  const { title, price, images, id, category } = product;
+
   return (
     <>
       <div className="page-top-info">
         <div className="container">
-          <h4>Category PAge</h4>
+          <h4>Category: {category}</h4>
           <div className="site-pagination">
             <a href="">Home</a> /<a href="">Shop</a>
           </div>
@@ -20,11 +38,7 @@ const DetailsPage = () => {
           <div className="row">
             <div className="col-lg-6">
               <div className="product-pic-zoom">
-                <img
-                  className="product-big-img"
-                  src="img/single-product/1.jpg"
-                  alt=""
-                />
+                <img className="product-big-img" src={images[1]} alt="" />
               </div>
               <div
                 className="product-thumbs"
@@ -36,7 +50,7 @@ const DetailsPage = () => {
                     className="pt active"
                     data-imgbigurl="img/single-product/1.jpg"
                   >
-                    <img src="img/single-product/thumb-1.jpg" alt="" />
+                    <img alt="" />
                   </div>
                   <div className="pt" data-imgbigurl="img/single-product/2.jpg">
                     <img src="img/single-product/thumb-2.jpg" alt="" />
@@ -51,8 +65,8 @@ const DetailsPage = () => {
               </div>
             </div>
             <div className="col-lg-6 product-details">
-              <h2 className="p-title">White peplum top</h2>
-              <h3 className="p-price">$39.90</h3>
+              <h2 className="p-title">{title}</h2>
+              <h3 className="p-price">${price}</h3>
               <h4 className="p-stock">
                 Available: <span>In Stock</span>
               </h4>
