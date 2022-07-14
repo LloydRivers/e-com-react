@@ -1,14 +1,20 @@
+/* =================================
+------------------------------------
+  Divisima | eCommerce Template
+  Version: 1.0
+ ------------------------------------
+ ====================================*/
+
+/*----------------------------------------*/
+/* Template default CSS
+/*----------------------------------------*/
+
 html,
 body {
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #212529;
-  text-align: left;
-  background-color: #fff;
+  font-family: "Josefin Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
 }
 
 h1,
@@ -871,6 +877,7 @@ ol {
 
 .product-item .pi-links a.add-card {
   padding-top: 8px;
+  cursor: pointer;
 }
 
 .product-item .pi-links a.add-card span {
@@ -921,7 +928,7 @@ ol {
 -------------------------*/
 
 .product-filter-section {
-  padding: 60px;
+  padding-bottom: 60px;
 }
 
 .product-filter-section .section-title {
