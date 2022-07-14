@@ -5,16 +5,29 @@ export const cartSlice = createSlice({
   initialState: {
     cartItems: [],
     total: 0,
-    quantity: 0,
-    promoCode: "",
-    activePromoCode: {
-      ["summer50"]: 0.5,
-    },
+    promoCode: "summer50",
   },
   reducers: {
     addToCart: (state, action) => {
-      state.cartItems.push(action.payload);
-      state.quantity += 1;
+      //If item exists in the cart, increment its quantity (item.quantity++)
+      //otherwise, push the new product ([...previous, {...product, quantity: 1}])
+
+      if (state.cartItems.find((item) => item.id === action.payload.id)) {
+        console.log("Item Exists");
+        state.cartItems = state.cartItems.map((item) => {
+          if (item.id === action.payload.id) {
+            return { ...item, quantity: item.quantity + 1 };
+          } else {
+            return { ...item };
+          }
+        });
+        //go to that specific item, increment its quantity
+      } else {
+        console.log("Item does not exist");
+        //item does not exist
+        state.cartItems.push({ ...action.payload, quantity: 1 });
+      }
+
       state.total += action.payload.price * 1.2;
     },
     removeFromCart: (state, action) => {
@@ -36,9 +49,25 @@ export const cartSlice = createSlice({
           state.total - state.total * state.activePromoCode.action.payload;
       }
     },
+    checkPromoCode: (state, action) => {
+      // if the action.payload === state.promoCode, then apply a discount of 50%
+      if (action.payload === state.promoCode) {
+        state.total = state.total * 0.5;
+      }
+    },
   },
 });
 
-export const { addToCart, removeFromCart, clearCart, setPromoCode } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  clearCart,
+  setPromoCode,
+  checkPromoCode,
+} = cartSlice.actions;
+
+export const selectCartItems = (state) => state.cart.cartItems;
+export const selectQuantity = (state) => state.cart.quantity;
+export const selectTotal = (state) => state.cart.total;
+
 export default cartSlice.reducer;

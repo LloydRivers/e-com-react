@@ -1,7 +1,21 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { selectCartItems } from "../../Redux/slices/CartSlices/cartSlice";
+import { filterProducts } from "../../Redux/slices/ProductSlices/productsSlice";
 
 const Header = () => {
+  const [search, setSearch] = useState("");
+  const cartList = useSelector(selectCartItems);
+
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+    dispatch(filterProducts(e.target.value));
+  };
+
   return (
     <header className="header-section">
       <div className="header-top">
@@ -14,7 +28,12 @@ const Header = () => {
             </div>
             <div className="col-xl-6 col-lg-5">
               <form className="header-search-form">
-                <input type="text" placeholder="Search on divisima ...." />
+                <input
+                  value={search}
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Search on divisima ...."
+                />
                 <button>
                   <i className="flaticon-search"></i>
                 </button>
@@ -29,9 +48,11 @@ const Header = () => {
                 <div className="up-item">
                   <div className="shopping-card">
                     <i className="flaticon-bag"></i>
-                    <span>0</span>
+                    <span>{cartList.length}</span>
                   </div>
-                  <a href="#">Shopping Cart</a>
+                  <Link to="/cart">
+                    <a>Shopping Cart</a>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -1,14 +1,36 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-//
-export const fetchProducts = createAsyncThunk(
-  "products/fetchProducts",
-  async () => {
-    const { data } = await axios.get("https://dummyjson.com/products");
-    return data.products;
-  }
-);
+const data = () => {
+  return axios
+    .request({
+      method: "GET",
+      url: process.env.REACT_APP_API_ENDPOINT,
+      params: {
+        store: "US",
+        offset: "0",
+        categoryId: "4208",
+        limit: "500",
+        country: "US",
+        sort: "freshness",
+        currency: "USD",
+        sizeSchema: "US",
+        lang: "en-US",
+      },
+      headers: {
+        "X-RapidAPI-Key": process.env.REACT_APP_API_KEY,
+        "X-RapidAPI-Host": process.env.REACT_APP_API_HOST,
+      },
+    })
+    .then(function (response) {
+      console.log(response.data);
+      return response.data.products;
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
+export const fetchProducts = createAsyncThunk("products/fetchProducts", data);
 
 export const deleteProductThunk = createAsyncThunk(
   "products/deleteProduct",
@@ -41,12 +63,23 @@ const productsSlice = createSlice({
     loading: false,
     isError: false,
     errorMessage: "",
+    filterProducts: [],
   },
   reducers: {
     deleteProduct: (state, action) => {
       state.products = state.products.filter(
         (product) => product.id !== action.payload
       );
+    },
+    filterProducts: (state, action) => {
+      if (action.payload === "") {
+        state.filterProducts = state.products;
+      }
+
+      state.filterProducts = state.products.filter((product) => {
+        console.log(action.payload);
+        return product.title.toLowerCase().includes(action.payload);
+      });
     },
     postProduct: (state, action) => {
       state.products.push(action.payload);
@@ -67,6 +100,8 @@ const productsSlice = createSlice({
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.products = action.payload;
       state.loading = false;
+      state.filterProducts = action.payload;
+      console.log("HI I AM PAYLOAD", action.payload);
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.isError = true;
@@ -125,8 +160,10 @@ const productsSlice = createSlice({
     });
   },
 });
-export const { deleteProduct, postProduct, putProduct } = productsSlice.actions;
+export const { deleteProduct, postProduct, putProduct, filterProducts } =
+  productsSlice.actions;
 export const selectProducts = (state) => state.products.products;
+export const selectFilterProducts = (state) => state.products.filterProducts;
 export const selectLoading = (state) => state.products.loading;
 export const selectIsError = (state) => state.products.isError;
 export const selectErrorMessage = (state) => state.products.errorMessage;

@@ -6,13 +6,14 @@ import { useDispatch } from "react-redux";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
-  const { title, price, images, id } = product;
+  const { brandName, imageUrl, id, price } = product;
+  console.log(product);
 
   return (
     <div className="col-lg-3 col-sm-6">
       <div className="product-item">
         <div className="pi-pic">
-          <img src="//unsplash.it/500/300" alt="product" />
+          <img src={`https://${imageUrl}`} alt="product" />
           <div className="pi-links">
             <a
               className="add-card"
@@ -22,19 +23,18 @@ const ProductCard = ({ product }) => {
               <span>ADD TO CART</span>
             </a>
             <Link to={`details/${id}`}>
-              <a
+              <span
                 onClick={() => dispatch(addProduct(product))}
-                href="#"
                 className="wishlist-btn"
               >
                 <i className="flaticon-heart"></i>
-              </a>
+              </span>
             </Link>
           </div>
         </div>
         <div className="pi-text">
-          <h6>${price}</h6>
-          <p>{title} </p>
+          <h6>${price.current.text}</h6>
+          <p>{brandName} </p>
         </div>
       </div>
     </div>

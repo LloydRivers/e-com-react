@@ -4,23 +4,24 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {
   fetchProducts,
-  selectProducts,
   selectLoading,
   selectIsError,
   selectErrorMessage,
+  selectFilterProducts,
 } from "../../Redux/slices/ProductSlices/productsSlice";
 
 const HomePage = () => {
   const [itemsToShow, setItemsToShow] = useState(8);
   const [expanded, setExpanded] = useState(false);
 
-  const products = useSelector(selectProducts);
+  const products = useSelector(selectFilterProducts);
+  console.log("In the home page", products);
 
   const loading = useSelector(selectLoading);
   const isError = useSelector(selectIsError);
   const errorMessage = useSelector(selectErrorMessage);
   const dispatch = useDispatch();
-  console.log(products);
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
