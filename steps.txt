@@ -11,6 +11,6 @@ Category Page?
 
 TODO: App styling
 
-Redux: Keep the track of 
+Redux: Keep the track of the data
 
 Features: Authentication, Cloud Storage, Filtering. 
