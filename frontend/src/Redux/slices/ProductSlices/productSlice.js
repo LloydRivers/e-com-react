@@ -5,7 +5,6 @@ export const fetchProduct = createAsyncThunk(
   "product/fetchProduct",
   async (id) => {
     const { data } = await axios.get(`https://dummyjson.com/products/${id}`);
-    console.log(data);
     return data;
   }
 );
@@ -20,7 +19,6 @@ const productSlice = createSlice({
   },
   reducers: {
     addProduct: (state, action) => {
-      console.log("INSIDE PRODUCT SLICE", action.payload);
       state.product = action.payload;
     },
   },

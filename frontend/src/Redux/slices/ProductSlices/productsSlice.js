@@ -23,7 +23,6 @@ const data = () => {
       },
     })
     .then(function (response) {
-      console.log(response.data);
       return response.data.products;
     })
     .catch(function (error) {
@@ -77,7 +76,6 @@ const productsSlice = createSlice({
       }
 
       state.filterProducts = state.products.filter((product) => {
-        console.log(action.payload);
         return product.title.toLowerCase().includes(action.payload);
       });
     },
@@ -101,11 +99,9 @@ const productsSlice = createSlice({
       state.products = action.payload;
       state.loading = false;
       state.filterProducts = action.payload;
-      console.log("HI I AM PAYLOAD", action.payload);
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.isError = true;
-      console.log(action.error);
       state.errorMessage = action.error.message;
       state.loading = false;
     });
@@ -113,8 +109,6 @@ const productsSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(deleteProductThunk.fulfilled, (state, action) => {
-      console.log(action.payload);
-      console.log("request successful!");
       state.products = state.products.filter(
         (product) => product.id !== action.payload
       );
@@ -130,8 +124,6 @@ const productsSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(postProductThunk.fulfilled, (state, action) => {
-      console.log(action.payload);
-      console.log("request successful!");
       state.products.push(action.payload);
       state.loading = false;
     });
@@ -145,8 +137,6 @@ const productsSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(putProductThunk.fulfilled, (state, action) => {
-      console.log(action.payload);
-      console.log("request successful!");
       state.products = state.products.map((product) =>
         product.id === action.payload.id ? action.payload : product
       );

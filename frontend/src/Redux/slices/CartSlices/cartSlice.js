@@ -13,7 +13,6 @@ export const cartSlice = createSlice({
       //otherwise, push the new product ([...previous, {...product, quantity: 1}])
 
       if (state.cartItems.find((item) => item.id === action.payload.id)) {
-        console.log("Item Exists");
         state.cartItems = state.cartItems.map((item) => {
           if (item.id === action.payload.id) {
             return { ...item, quantity: item.quantity + 1 };
@@ -23,12 +22,11 @@ export const cartSlice = createSlice({
         });
         //go to that specific item, increment its quantity
       } else {
-        console.log("Item does not exist");
         //item does not exist
         state.cartItems.push({ ...action.payload, quantity: 1 });
       }
 
-      state.total += action.payload.price * 1.2;
+      state.total += action.payload.price.current.value * 1.2;
     },
     removeFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter(

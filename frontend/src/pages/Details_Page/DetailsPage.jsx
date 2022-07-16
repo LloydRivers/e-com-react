@@ -1,29 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
-// brand: "Apple"
-// category: "smartphones"
-// description: "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ..."
-// discountPercentage: 17.94
-// id: 2
-// images: (4) ['https://dummyjson.com/image/i/products/2/1.jpg', 'https://dummyjson.com/image/i/products/2/2.jpg', 'https://dummyjson.com/image/i/products/2/3.jpg', 'https://dummyjson.com/image/i/products/2/thumbnail.jpg']
-// price: 899
-// rating: 4.44
-// stock: 34
-// thumbnail: "https://dummyjson.com/image/i/products/2/thumbnail.jpg"
-// title: "iPhone X"
+import { Link } from "react-router-dom";
 
 import { selectProduct } from "../../Redux/slices/ProductSlices/productSlice";
 
 const DetailsPage = () => {
   const product = useSelector(selectProduct);
-  const { title, price, images, id, category } = product;
+  const { brandName, imageUrl, id, price, name } = product;
 
   return (
     <>
       <div className="page-top-info">
         <div className="container">
-          <h4>Category: {category}</h4>
+          {/* <h4>Category: {category}</h4> */}
           <div className="site-pagination">
             <a href="">Home</a> /<a href="">Shop</a>
           </div>
@@ -38,35 +27,16 @@ const DetailsPage = () => {
           <div className="row">
             <div className="col-lg-6">
               <div className="product-pic-zoom">
-                <img className="product-big-img" src={images[1]} alt="" />
-              </div>
-              <div
-                className="product-thumbs"
-                tabIndex="1"
-                style={{ overflow: "hidden", outline: "none" }}
-              >
-                <div className="product-thumbs-track">
-                  <div
-                    className="pt active"
-                    data-imgbigurl="img/single-product/1.jpg"
-                  >
-                    <img alt="" />
-                  </div>
-                  <div className="pt" data-imgbigurl="img/single-product/2.jpg">
-                    <img src="img/single-product/thumb-2.jpg" alt="" />
-                  </div>
-                  <div className="pt" data-imgbigurl="img/single-product/3.jpg">
-                    <img src="img/single-product/thumb-3.jpg" alt="" />
-                  </div>
-                  <div className="pt" data-imgbigurl="img/single-product/4.jpg">
-                    <img src="img/single-product/thumb-4.jpg" alt="" />
-                  </div>
-                </div>
+                <img
+                  className="product-big-img"
+                  src={`https://${imageUrl}`}
+                  alt=""
+                />
               </div>
             </div>
             <div className="col-lg-6 product-details">
-              <h2 className="p-title">{title}</h2>
-              <h3 className="p-price">${price}</h3>
+              <h2 className="p-title">{name}</h2>
+              <h3 className="p-price"> {price.current.text}</h3>
               <h4 className="p-stock">
                 Available: <span>In Stock</span>
               </h4>
@@ -113,9 +83,9 @@ const DetailsPage = () => {
                   <input type="text" value="1" />
                 </div>
               </div>
-              <a href="#" className="site-btn">
-                SHOP NOW
-              </a>
+              <Link to="/cart" className="site-btn">
+                BUY NOW
+              </Link>
               <div id="accordion" className="accordion-area">
                 <div className="panel">
                   <div className="panel-header" id="headingOne">
@@ -237,107 +207,6 @@ const DetailsPage = () => {
                 <a href="">
                   <i className="fa fa-youtube"></i>
                 </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="related-product-section">
-        <div className="container">
-          <div className="section-title">
-            <h2>RELATED PRODUCTS</h2>
-          </div>
-          <div className="product-slider owl-carousel">
-            <div className="product-item">
-              <div className="pi-pic">
-                <img src="./img/product/1.jpg" alt="" />
-                <div className="pi-links">
-                  <a href="#" className="add-card">
-                    <i className="flaticon-bag"></i>
-                    <span>ADD TO CART</span>
-                  </a>
-                  <a href="#" className="wishlist-btn">
-                    <i className="flaticon-heart"></i>
-                  </a>
-                </div>
-              </div>
-              <div className="pi-text">
-                <h6>$35,00</h6>
-                <p>Flamboyant Pink Top</p>
-              </div>
-            </div>
-            <div className="product-item">
-              <div className="pi-pic">
-                <div className="tag-new">New</div>
-                <img src="./img/product/2.jpg" alt="" />
-                <div className="pi-links">
-                  <a href="#" className="add-card">
-                    <i className="flaticon-bag"></i>
-                    <span>ADD TO CART</span>
-                  </a>
-                  <a href="#" className="wishlist-btn">
-                    <i className="flaticon-heart"></i>
-                  </a>
-                </div>
-              </div>
-              <div className="pi-text">
-                <h6>$35,00</h6>
-                <p>Black and White Stripes Dress</p>
-              </div>
-            </div>
-            <div className="product-item">
-              <div className="pi-pic">
-                <img src="./img/product/3.jpg" alt="" />
-                <div className="pi-links">
-                  <a href="#" className="add-card">
-                    <i className="flaticon-bag"></i>
-                    <span>ADD TO CART</span>
-                  </a>
-                  <a href="#" className="wishlist-btn">
-                    <i className="flaticon-heart"></i>
-                  </a>
-                </div>
-              </div>
-              <div className="pi-text">
-                <h6>$35,00</h6>
-                <p>Flamboyant Pink Top</p>
-              </div>
-            </div>
-            <div className="product-item">
-              <div className="pi-pic">
-                <img src="./img/product/4.jpg" alt="" />
-                <div className="pi-links">
-                  <a href="#" className="add-card">
-                    <i className="flaticon-bag"></i>
-                    <span>ADD TO CART</span>
-                  </a>
-                  <a href="#" className="wishlist-btn">
-                    <i className="flaticon-heart"></i>
-                  </a>
-                </div>
-              </div>
-              <div className="pi-text">
-                <h6>$35,00</h6>
-                <p>Flamboyant Pink Top</p>
-              </div>
-            </div>
-            <div className="product-item">
-              <div className="pi-pic">
-                <img src="./img/product/6.jpg" alt="" />
-                <div className="pi-links">
-                  <a href="#" className="add-card">
-                    <i className="flaticon-bag"></i>
-                    <span>ADD TO CART</span>
-                  </a>
-                  <a href="#" className="wishlist-btn">
-                    <i className="flaticon-heart"></i>
-                  </a>
-                </div>
-              </div>
-              <div className="pi-text">
-                <h6>$35,00</h6>
-                <p>Flamboyant Pink Top</p>
               </div>
             </div>
           </div>

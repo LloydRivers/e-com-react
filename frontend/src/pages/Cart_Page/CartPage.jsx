@@ -67,7 +67,7 @@ const CartPage = () => {
                 {cartList.length > 0 ? (
                   <div className="total-cost">
                     <h6>
-                      Total with tax: <span>{total}0</span>
+                      Total with tax: <span>${total}</span>
                     </h6>
                   </div>
                 ) : null}

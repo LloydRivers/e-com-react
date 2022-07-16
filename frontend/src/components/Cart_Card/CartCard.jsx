@@ -8,18 +8,21 @@ import {
 } from "../../Redux/slices/CartSlices/cartSlice";
 
 const CartCard = ({ cartProduct }) => {
-  const { title, price, images, id, quantity } = cartProduct;
+  console.log("SINGLE OBJECT", cartProduct);
+  const { brandName, price, imageUrl, quantity } = cartProduct;
   const [itemQuantity, setItemQuantity] = useState(quantity);
-  console.log(cartProduct);
   const cartItems = useSelector(selectCartItems);
+  console.log("CART ITEMS", cartItems);
+
+  console.log("TYPE OF ", typeof price.current.value);
 
   return (
     <tr>
       <td className="product-col">
-        <img src="img/cart/1.jpg" alt="" />
+        <img src={`https://${imageUrl}`} alt="" />
         <div className="pc-title">
-          <h4>{title}</h4>
-          <p>${price}</p>
+          <h4>{brandName}</h4>
+          <p>${price.current.value}</p>
         </div>
       </td>
       <td className="quy-col">
@@ -38,7 +41,7 @@ const CartCard = ({ cartProduct }) => {
         <h4>Size M</h4>
       </td>
       <td className="total-col">
-        <h4>${price * itemQuantity}</h4>
+        {<h4>${price.current.value * itemQuantity}</h4>}
       </td>
     </tr>
   );

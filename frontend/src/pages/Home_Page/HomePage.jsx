@@ -15,7 +15,6 @@ const HomePage = () => {
   const [expanded, setExpanded] = useState(false);
 
   const products = useSelector(selectFilterProducts);
-  console.log("In the home page", products);
 
   const loading = useSelector(selectLoading);
   const isError = useSelector(selectIsError);
