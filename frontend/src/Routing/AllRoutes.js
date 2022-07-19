@@ -6,6 +6,7 @@ import {
   DetailsPage,
   CheckOutPage,
   ContactPage,
+  AddProductForm,
 } from "../pages";
 
 import { Footer, Header } from "components";
@@ -20,6 +21,7 @@ const AllRoutes = () => {
         <Route path="/details/:id" element={<DetailsPage />} />
         <Route path="/checkout" element={<CheckOutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/admin/add-products" element={<AddProductForm />} />
       </Routes>
       <Footer />
     </Router>
