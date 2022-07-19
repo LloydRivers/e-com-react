@@ -26,14 +26,14 @@ export const cartSlice = createSlice({
         state.cartItems.push({ ...action.payload, quantity: 1 });
       }
 
-      state.total += action.payload.price.current.value * 1.2;
+      state.total += Number(action.payload.price) * 1.2;
     },
     removeFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter(
         (cartItem) => cartItem.id !== action.payload.id
       );
       state.quantity -= 1;
-      state.total -= action.payload.price - 1.2;
+      state.total -= Number(action.payload.price) - 1.2;
     },
     clearCart: (state) => {
       state.cartItems = [];
