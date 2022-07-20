@@ -9,7 +9,6 @@ export const cartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, action) => {
-      console.log(action.payload);
       //If item exists in the cart, increment its quantity (item.quantity++)
       //otherwise, push the new product ([...previous, {...product, quantity: 1}])
       if (state.cartItems.find((item) => item.id === action.payload.id)) {

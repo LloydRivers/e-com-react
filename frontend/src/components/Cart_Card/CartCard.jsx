@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { addToCart } from "../../Redux/slices/CartSlices/cartSlice";
 
 import {
   selectCartItems,
@@ -9,12 +11,14 @@ import {
 
 const CartCard = ({ cartProduct }) => {
   const { brandname, price, imageurl, quantity } = cartProduct;
-
   const [itemQuantity, setItemQuantity] = useState(quantity);
+  const dispatch = useDispatch();
+
   const cartItems = useSelector(selectCartItems);
   console.log("CART ITEMS", cartItems);
 
   const handleChange = (e) => {
+    dispatch(addToCart(cartProduct));
     setItemQuantity(Number(e.target.value));
   };
   return (
