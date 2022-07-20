@@ -44,8 +44,7 @@ h2 {
 .required {
   color: red;
 }
-label,
-table {
+label {
   display: block;
   margin: 15px;
 }
@@ -95,7 +94,7 @@ tr > td:nth-child(2) {
   color: #52ad9c;
 }
 td {
-  border-bottom: 1px solid #dadada;
+  /* border-bottom: 1px solid #dadada; */
   padding: 25px 25px 25px 0;
 }
 

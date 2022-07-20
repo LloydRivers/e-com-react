@@ -1,4 +1,4 @@
-/* =================================
+.cart-table .product-col /* =================================
 ------------------------------------
   Divisima | eCommerce Template
   Version: 1.0
@@ -1781,7 +1781,6 @@ ol {
 
 .cart-table .product-col {
   display: table;
-  margin-bottom: 19px;
 }
 
 .cart-table .product-col img {

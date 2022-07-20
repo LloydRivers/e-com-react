@@ -8,20 +8,21 @@ import {
 } from "../../Redux/slices/CartSlices/cartSlice";
 
 const CartCard = ({ cartProduct }) => {
-  const { brandName, price, imageurl, quantity } = cartProduct;
+  const { brandname, price, imageurl, quantity } = cartProduct;
 
   const [itemQuantity, setItemQuantity] = useState(quantity);
   const cartItems = useSelector(selectCartItems);
   console.log("CART ITEMS", cartItems);
 
   return (
-    <tr>
+    <tr style={{ borderBottom: "1px solid #dadada" }}>
       <td className="product-col">
         <img src={`${imageurl}`} alt="" />
-        <div className="pc-title">
-          <h4>{brandName}</h4>
+
+        {/* <div className="pc-title">
+          <h4>{brandname}</h4>
           <p>${price}</p>
-        </div>
+        </div> */}
       </td>
       <td className="quy-col">
         <div className="quantity">

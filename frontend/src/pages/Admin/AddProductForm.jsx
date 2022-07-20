@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./add-product.css";
+import "./adding-product.css";
 import axios from "axios";
 
 const AddProductForm = () => {

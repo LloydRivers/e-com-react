@@ -16,6 +16,10 @@ const CartPage = () => {
 
   const cartList = useSelector(selectCartItems);
 
+  // useEffect(() => {
+  //   console.log("CARTLIST", cartList);
+  // }, []);
+
   const total = useSelector(selectTotal);
 
   const handlePromoCode = (e) => {
