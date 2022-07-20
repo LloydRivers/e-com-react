@@ -14,21 +14,19 @@ const CartCard = ({ cartProduct }) => {
   const cartItems = useSelector(selectCartItems);
   console.log("CART ITEMS", cartItems);
 
+  const handleChange = (e) => {
+    setItemQuantity(Number(e.target.value));
+  };
   return (
     <tr style={{ borderBottom: "1px solid #dadada" }}>
       <td className="product-col">
         <img src={`${imageurl}`} alt="" />
-
-        {/* <div className="pc-title">
-          <h4>{brandname}</h4>
-          <p>${price}</p>
-        </div> */}
       </td>
       <td className="quy-col">
         <div className="quantity">
           <div className="pro-qty">
             <input
-              onChange={(e) => setItemQuantity(Number(e.target.value))}
+              onChange={handleChange}
               type="number"
               value={itemQuantity}
               min={1}
