@@ -11,7 +11,6 @@ export const cartSlice = createSlice({
     addToCart: (state, action) => {
       //If item exists in the cart, increment its quantity (item.quantity++)
       //otherwise, push the new product ([...previous, {...product, quantity: 1}])
-
       if (state.cartItems.find((item) => item.id === action.payload.id)) {
         state.cartItems = state.cartItems.map((item) => {
           if (item.id === action.payload.id) {

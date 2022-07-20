@@ -1,7 +1,6 @@
 import AllRoutes from "Routing/AllRoutes";
-import React, { useEffect } from "react";
+import React from "react";
 
-import axios from "axios";
 function App() {
   return <AllRoutes />;
 }

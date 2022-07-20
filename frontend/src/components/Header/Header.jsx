@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { selectCartItems } from "../../Redux/slices/CartSlices/cartSlice";
 import { filterProducts } from "../../Redux/slices/ProductSlices/productsSlice";
 
+import { signInWithGooglePopup } from "../../firebase/firebase.utils";
+
 const Header = () => {
   const [search, setSearch] = useState("");
   const cartList = useSelector(selectCartItems);
@@ -50,9 +52,7 @@ const Header = () => {
                     <i className="flaticon-bag"></i>
                     <span>{cartList.length}</span>
                   </div>
-                  <Link to="/cart">
-                    <a>Shopping Cart</a>
-                  </Link>
+                  <Link to="/cart">Shopping Cart</Link>
                 </div>
               </div>
             </div>
