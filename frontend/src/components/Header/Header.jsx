@@ -1,21 +1,37 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
+
 import { Link } from "react-router-dom";
+
 import { selectCartItems } from "../../Redux/slices/CartSlices/cartSlice";
+
 import { filterProducts } from "../../Redux/slices/ProductSlices/productsSlice";
 
-import { signInWithGooglePopup } from "../../firebase/firebase.utils";
+import {
+  selectIsLoggedIn,
+  selectUser,
+  logout,
+} from "../../Redux/slices/UserSlice/userSlice";
 
 const Header = () => {
   const [search, setSearch] = useState("");
   const cartList = useSelector(selectCartItems);
+
+  const { name } = useSelector(selectUser);
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setSearch(e.target.value);
     dispatch(filterProducts(e.target.value));
+  };
+
+  const handleLogout = () => {
+    console.log("logout");
+    dispatch(logout());
   };
 
   return (
@@ -43,11 +59,20 @@ const Header = () => {
             </div>
             <div className="col-xl-4 col-lg-5">
               <div className="user-panel">
-                <div className="up-item">
-                  <i className="flaticon-profile"></i>
-                  <Link to="/login">Sign in</Link>
-                  <Link to="/register">Create Account</Link>
-                </div>
+                {isLoggedIn ? (
+                  <div style={{ border: "1px solid red" }} className="up-item">
+                    <span>Hello {name}</span>
+                    <button onClick={handleLogout}>Logout</button>
+                  </div>
+                ) : (
+                  <div className="up-item">
+                    <i className="flaticon-profile"></i>
+
+                    <Link to="/login">Sign in /</Link>
+                    <Link to="/register">Create Account</Link>
+                  </div>
+                )}
+
                 <div className="up-item">
                   <div className="shopping-card">
                     <i className="flaticon-bag"></i>
