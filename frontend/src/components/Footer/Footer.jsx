@@ -14,34 +14,33 @@ const Footer = () => {
             <div className="footer-widget about-widget">
               <h2>About</h2>
               <p>
-                Donec vitae purus nunc. Morbi faucibus erat sit amet congue
-                mattis. Nullam frin-gilla faucibus urna, id dapibus erat iaculis
-                ut. Integer ac sem.
+                This website started life as a very old, html template. I wanted
+                to challenge myself and convert it into a full stack react app.{" "}
               </p>
               <img src="/img/cards.png" alt="" />
             </div>
           </div>
           <div className="col-lg-3 col-sm-6">
             <div className="footer-widget about-widget">
-              <h2>Questions</h2>
+              <h2>Tech used</h2>
               <ul>
                 <li>
-                  <a href="">About Us</a>
+                  <a href="">React</a>
                 </li>
                 <li>
-                  <a href="">Track Orders</a>
+                  <a href="">Express</a>
                 </li>
                 <li>
-                  <a href="">Returns</a>
+                  <a href="">Node</a>
                 </li>
                 <li>
-                  <a href="">Jobs</a>
+                  <a href="">PostgresQL</a>
                 </li>
                 <li>
-                  <a href="">Shipping</a>
+                  <a href="">Bootstrap</a>
                 </li>
                 <li>
-                  <a href="">Blog</a>
+                  <a href="">Redux</a>
                 </li>
               </ul>
               <ul>
