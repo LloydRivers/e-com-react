@@ -24,8 +24,8 @@ const AllRoutes = () => {
         <Route path="/checkout" element={<CheckOutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/admin/add-products" element={<AddProductForm />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/register" element={<SignUpPage />} />
+        <Route path="/login" element={<SignInPage />} />
       </Routes>
       <Footer />
     </Router>

@@ -19,7 +19,7 @@ const {
   updateProduct,
 } = require("./controllers/productController");
 
-const { createUser } = require("./controllers/userController");
+const { createUser, login } = require("./controllers/userController");
 
 massive(
   {
@@ -52,7 +52,7 @@ app.put("/updateProduct/:id", updateProduct);
 /*USERS*/
 
 app.post("/register", createUser);
-
+app.post("/login", login);
 /****************************************/
 
 app.listen((PORT = 5000), () => {

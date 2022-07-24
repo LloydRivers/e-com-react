@@ -35,7 +35,7 @@ const SignUpPage = () => {
       addressRef.current.value = "";
 
       if (data.status === "success") {
-        navigate("/signin");
+        navigate("/login");
       }
     } catch (error) {
       console.log(error);
