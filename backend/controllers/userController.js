@@ -15,10 +15,6 @@ module.exports = {
           .status(400)
           .send({ message: "User not found", status: "error" });
       }
-      /////
-      console.log(`Password: ${password}`);
-      console.log(`User password: ${singleUser.password}`);
-      console.log(user);
 
       const isMatch = await bcrypt.compare(password, singleUser.password);
       console.log(isMatch);
