@@ -1,9 +1,15 @@
 import React, { useRef, useState } from "react";
+import { decodeToken } from "react-jwt";
+
+import { useDispatch } from "react-redux";
+
+import { login } from "../../Redux/slices/UserSlice/userSlice";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SignInPage = () => {
+  const dispatch = useDispatch();
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -23,8 +29,14 @@ const SignInPage = () => {
         email,
         password,
       });
-      console.log("after request");
       if (data.status === "success") {
+        const myDecodedToken = decodeToken(data.token);
+        dispatch(login({ decodedToken: myDecodedToken, token: data.token }));
+
+        //state.token = data.token
+        //state.isLoggedIn = true
+        //state.user = decoded(data.token)
+
         navigate("/");
       } else {
         setError(true);
