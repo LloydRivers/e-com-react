@@ -6,7 +6,8 @@ import { selectProduct } from "../../Redux/slices/ProductSlices/productSlice";
 
 const DetailsPage = () => {
   const product = useSelector(selectProduct);
-  const { brandName, imageUrl, id, price, name } = product;
+  console.log("PRODUCT", JSON.stringify(product));
+  const { brandname, imageurl, id, price, name } = product;
 
   return (
     <>
@@ -27,16 +28,12 @@ const DetailsPage = () => {
           <div className="row">
             <div className="col-lg-6">
               <div className="product-pic-zoom">
-                <img
-                  className="product-big-img"
-                  src={`https://${imageUrl}`}
-                  alt=""
-                />
+                <img className="product-big-img" src={imageurl} alt="" />
               </div>
             </div>
             <div className="col-lg-6 product-details">
               <h2 className="p-title">{name}</h2>
-              <h3 className="p-price"> {price.current.text}</h3>
+              <h3 className="p-price"> {price}</h3>
               <h4 className="p-stock">
                 Available: <span>In Stock</span>
               </h4>

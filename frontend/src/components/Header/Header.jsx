@@ -45,7 +45,8 @@ const Header = () => {
               <div className="user-panel">
                 <div className="up-item">
                   <i className="flaticon-profile"></i>
-                  <a href="#">Sign</a> In or <a href="#">Create Account</a>
+                  <Link to="signin">Sign in</Link>
+                  <Link to="/signup">Create Account</Link>
                 </div>
                 <div className="up-item">
                   <div className="shopping-card">

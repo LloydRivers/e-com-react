@@ -19,6 +19,8 @@ const {
   updateProduct,
 } = require("./controllers/productController");
 
+const { createUser } = require("./controllers/userController");
+
 massive(
   {
     connectionString: POSTGRES_URI,
@@ -36,11 +38,20 @@ massive(
     console.log("DB Connection Failed!");
   });
 
+/*PRODUCTS*/
 app.get("/getProducts", getProducts);
 app.get("/getSpecificProduct/:id", getSpecificProduct);
 app.post("/createProduct", createProduct);
 app.delete("/deleteProduct/:id", deleteProduct);
 app.put("/updateProduct/:id", updateProduct);
+
+/****************************************/
+/****************************************/
+/****************************************/
+
+/*USERS*/
+
+app.post("/register", createUser);
 
 /****************************************/
 
