@@ -28,7 +28,6 @@ module.exports = {
   createProduct: async (req, res) => {
     const db = req.app.get("db");
     const { brandName, color, imageUrl, name, price, category_id } = req.body;
-    console.log("post controller");
 
     try {
       const product = await db.products.create_product(
