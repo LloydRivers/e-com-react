@@ -18,11 +18,20 @@ const userSlice = createSlice({
       state.user = decodedToken;
       state.token = token;
     },
+    logout: (state) => {
+      state.isLoggedIn = false;
+      state.user = {};
+      state.token = null;
+    },
   },
 });
 
-export const { login } = userSlice.actions;
+export const { login, logout } = userSlice.actions;
 
 export default userSlice.reducer;
 
-const selectUser = (state) => state.user.user;
+export const selectUser = (state) => state.user.user;
+export const selectIsLoggedIn = (state) => state.user.isLoggedIn;
+export const selectIsLoading = (state) => state.user.isLoading;
+export const selectError = (state) => state.user.error;
+export const selectToken = (state) => state.user.token;
