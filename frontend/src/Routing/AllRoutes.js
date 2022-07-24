@@ -7,6 +7,8 @@ import {
   CheckOutPage,
   ContactPage,
   AddProductForm,
+  SignUpPage,
+  SignInPage,
 } from "../pages";
 
 import { Footer, Header } from "components";
@@ -22,6 +24,8 @@ const AllRoutes = () => {
         <Route path="/checkout" element={<CheckOutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/admin/add-products" element={<AddProductForm />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/signin" element={<SignInPage />} />
       </Routes>
       <Footer />
     </Router>
