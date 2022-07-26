@@ -97,12 +97,6 @@ const Header = () => {
             <li>
               <Link to="/cart">Cart</Link>
             </li>
-            <li>
-              <a href="#">
-                Jewelry
-                <span className="new">New</span>
-              </a>
-            </li>
           </ul>
         </div>
       </nav>
