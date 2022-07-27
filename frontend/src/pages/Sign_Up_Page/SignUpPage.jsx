@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-
-import "./signup.css";
+import "pages/Sign_In_Page/sign-in.css";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -43,32 +42,32 @@ const SignUpPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="signup_parent">
-      <div className="content">
-        <div className="container cont2">
-          <div className="login" id="signupform-div">
-            <h1>SIGNUP</h1>
-            <input ref={nameRef} type="text" placeholder="name" />
-            <br />
-            <input ref={surnameRef} type="text" placeholder="surname" />
-            <br />
-            <input ref={emailRef} type="email" placeholder="email" />
-            <br />
-            <input ref={passwordRef} type="password" placeholder="password" />
-            <br />
-            <input ref={telephoneRef} type="text" placeholder="tel" />
-            <br />
-            <input ref={addressRef} type="text" placeholder="address" />
-            <br />
+    <div className="login">
+      <div className="form">
+        <form onSubmit={handleSubmit} className="login-form">
+          <input ref={nameRef} type="text" placeholder="name" />
+          <br />
+          <input ref={surnameRef} type="text" placeholder="surname" />
+          <br />
+          <input ref={emailRef} type="email" placeholder="email" />
+          <br />
+          <input ref={passwordRef} type="password" placeholder="password" />
+          <br />
+          <input ref={telephoneRef} type="text" placeholder="tel" />
+          <br />
+          <input ref={addressRef} type="text" placeholder="address" />
+          <br />
 
-            <button type="submit" className="btn btn1">
-              SIGNUP
-            </button>
-            <br />
-          </div>
-        </div>
+          <button type="submit" className="btn btn1">
+            SIGNUP
+          </button>
+          <p style={{ marginTop: "10px", paddingLeft: "0 !important" }}>
+            Allready have an account? <Link to="/register">Sign in!</Link>
+          </p>
+          <br />
+        </form>
       </div>
-    </form>
+    </div>
   );
 };
 

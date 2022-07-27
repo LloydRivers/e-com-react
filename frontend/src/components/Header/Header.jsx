@@ -26,7 +26,7 @@ const Header = () => {
 
   const handleChange = (e) => {
     setSearch(e.target.value);
-    dispatch(filterProducts(e.target.value));
+    dispatch(filterProducts(e.target.value.toLowerCase()));
   };
 
   const handleLogout = () => {
@@ -91,9 +91,12 @@ const Header = () => {
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/checkout">Checkout</Link>
-            </li>
+            {cartList.length && (
+              <li>
+                <Link to="/checkout">Checkout</Link>
+              </li>
+            )}
+
             <li>
               <Link to="/cart">Cart</Link>
             </li>

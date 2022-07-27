@@ -86,12 +86,20 @@ const CartPage = () => {
                   Submit
                 </button>
               </form>
-              <Link to="/checkout" className="site-btn">
-                Proceed to checkout
-              </Link>
-              <Link to="/" className="site-btn sb-dark">
-                Continue shopping
-              </Link>
+              {cartList.length ? (
+                <>
+                  <Link to="/checkout" className="site-btn">
+                    Proceed to checkout
+                  </Link>
+                  <Link to="/" className="site-btn sb-dark">
+                    Continue shopping
+                  </Link>
+                </>
+              ) : (
+                <Link to="/" className="site-btn sb-dark">
+                  Continue shopping
+                </Link>
+              )}
             </div>
           </div>
         </div>

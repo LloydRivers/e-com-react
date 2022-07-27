@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
+
+import "./sign-in.css";
 import { decodeToken } from "react-jwt";
 
 import { useDispatch } from "react-redux";
 
 import { login } from "../../Redux/slices/UserSlice/userSlice";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 const SignInPage = () => {
@@ -48,15 +50,22 @@ const SignInPage = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="">Email</label>
-        <input ref={emailRef} type="text" name="email" />
-        <label htmlFor="">Password</label>
-        <input ref={passwordRef} type="password" name="password" />
-
-        <button type="submit">Sign in...</button>
-      </form>
+    <div className="login">
+      <div className="form">
+        <form onSubmit={handleSubmit} className="login-form">
+          <input ref={emailRef} type="text" placeholder="email" />
+          <input
+            ref={passwordRef}
+            type="password"
+            placeholder="password"
+            required
+          />
+          <button>Sign in </button>
+          <p style={{ marginTop: "10px", paddingLeft: "0 !important" }}>
+            Don't have an account? <Link to="/register">Sign up!</Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

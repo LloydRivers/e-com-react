@@ -63,7 +63,7 @@ const productsSlice = createSlice({
       }
 
       state.filterProducts = state.products.filter((product) => {
-        return product.title.toLowerCase().includes(action.payload);
+        return product.brandname.toLowerCase().includes(action.payload);
       });
     },
     postProduct: (state, action) => {

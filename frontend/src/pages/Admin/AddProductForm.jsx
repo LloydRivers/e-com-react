@@ -6,7 +6,7 @@ const AddProductForm = () => {
   const [product, setProduct] = useState({
     brandName: "",
     color: "",
-    imageUrl: "",
+    imageUrl: "https://",
     name: "",
     price: "",
     category_id: null,
@@ -24,7 +24,7 @@ const AddProductForm = () => {
         setProduct({
           brandName: "",
           color: "",
-          imageUrl: "",
+          imageUrl: "https://",
           name: "",
           price: "",
           category_id: "",
