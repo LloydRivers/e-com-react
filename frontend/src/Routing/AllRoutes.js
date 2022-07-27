@@ -22,8 +22,8 @@ const AllRoutes = () => {
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckOutPage />} />
-          <Route path="/admin/add-products" element={<AddProductForm />} />
         </Route>
+        <Route path="/admin/add-products" element={<AddProductForm />} />
         <Route path="/details/:id" element={<DetailsPage />} />
         <Route path="/contact" element={<ContactPage />} />
 
