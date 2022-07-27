@@ -19,6 +19,8 @@ const {
   updateProduct,
 } = require("./controllers/productController");
 
+const { getCategories } = require("./controllers/categoriesController");
+
 const { createUser, login } = require("./controllers/userController");
 
 massive(
@@ -54,6 +56,11 @@ app.put("/updateProduct/:id", updateProduct);
 app.post("/register", createUser);
 app.post("/login", login);
 /****************************************/
+
+/****************************************/
+/****************************************/
+
+app.get("/categories", getCategories);
 
 app.listen((PORT = 5000), () => {
   console.log(`Server running on port ${PORT}`);
