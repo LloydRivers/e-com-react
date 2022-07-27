@@ -4,14 +4,14 @@ module.exports = {
     const db = req.app.get("db"); //To get reference to the db folder
 
     //Running SELECT * from products;
-    db.products
-      .fetch_products()
-      .then((products) => {
-        res.status(200).send(products);
-      })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+
+    try {
+      const products = await db.products.fetch_products();
+      res.status(200).send(products);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    }
   },
   getSpecificProduct: async (req, res) => {
     const db = req.app.get("db");
