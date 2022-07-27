@@ -11,7 +11,7 @@ import {
   SignInPage,
 } from "../pages";
 
-import { Footer, Header } from "components";
+import { Footer, Header, ProtectedRoute } from "components";
 
 const AllRoutes = () => {
   return (
@@ -19,11 +19,14 @@ const AllRoutes = () => {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/" element={<ProtectedRoute />}>
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckOutPage />} />
+          <Route path="/admin/add-products" element={<AddProductForm />} />
+        </Route>
         <Route path="/details/:id" element={<DetailsPage />} />
-        <Route path="/checkout" element={<CheckOutPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/admin/add-products" element={<AddProductForm />} />
+
         <Route path="/register" element={<SignUpPage />} />
         <Route path="/login" element={<SignInPage />} />
       </Routes>

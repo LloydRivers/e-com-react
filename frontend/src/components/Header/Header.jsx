@@ -60,9 +60,9 @@ const Header = () => {
             <div className="col-xl-4 col-lg-5">
               <div className="user-panel">
                 {isLoggedIn ? (
-                  <div style={{ border: "1px solid red" }} className="up-item">
-                    <span>Hello {name}</span>
-                    <button onClick={handleLogout}>Logout</button>
+                  <div className="up-item">
+                    <span>Hello {name} /</span>
+                    <span onClick={handleLogout}> Logout</span>
                   </div>
                 ) : (
                   <div className="up-item">

@@ -3,5 +3,6 @@ import Header from "./Header/Header";
 import Navbar from "./NavBar/Navbar";
 import ProductCard from "./Product_Card/ProductCard";
 import CartCard from "./Cart_Card/CartCard";
+import ProtectedRoute from "./Protected_Routes/ProtectedRoute";
 
-export { Footer, Header, Navbar, ProductCard, CartCard };
+export { Footer, Header, Navbar, ProductCard, CartCard, ProtectedRoute };
