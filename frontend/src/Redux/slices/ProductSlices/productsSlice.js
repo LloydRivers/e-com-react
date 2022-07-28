@@ -66,6 +66,15 @@ const productsSlice = createSlice({
         return product.brandname.toLowerCase().includes(action.payload);
       });
     },
+    filterProductByCategory: (state, action) => {
+      if (action.payload === 0) {
+        state.filterProducts = state.products;
+      } else {
+        state.filterProducts = state.products.filter((product) => {
+          return product.category_id === action.payload;
+        });
+      }
+    },
     postProduct: (state, action) => {
       state.products.push(action.payload);
     },
@@ -94,8 +103,13 @@ const productsSlice = createSlice({
     });
   },
 });
-export const { deleteProduct, postProduct, putProduct, filterProducts } =
-  productsSlice.actions;
+export const {
+  deleteProduct,
+  postProduct,
+  putProduct,
+  filterProducts,
+  filterProductByCategory,
+} = productsSlice.actions;
 export const selectProducts = (state) => state.products.products;
 export const selectFilterProducts = (state) => state.products.filterProducts;
 export const selectLoading = (state) => state.products.loading;

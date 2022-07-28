@@ -933,8 +933,8 @@ ol {
   display: inline-block;
 }
 
+.product-filter-menu li button,
 .product-filter-menu li a {
-  color: #111111;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
@@ -943,6 +943,8 @@ ol {
   width: 100%;
   padding: 10px 34px;
   border-radius: 31px;
+  border: none;
+  cursor: pointer;
 }
 
 /* ----------------

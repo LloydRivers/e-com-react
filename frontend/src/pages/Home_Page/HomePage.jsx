@@ -3,11 +3,17 @@ import { ProductCard } from "components";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
+  selectCategories,
+  fetchCategories,
+} from "../../Redux/slices/CategoriesSlice/categoriesSlice";
+
+import {
   fetchProducts,
   selectLoading,
   selectIsError,
   selectErrorMessage,
   selectFilterProducts,
+  filterProductByCategory,
 } from "../../Redux/slices/ProductSlices/productsSlice";
 
 const HomePage = () => {
@@ -21,8 +27,12 @@ const HomePage = () => {
   const errorMessage = useSelector(selectErrorMessage);
   const dispatch = useDispatch();
 
+  const categories = useSelector(selectCategories);
+  console.log(categories);
+
   useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(fetchCategories());
   }, []);
 
   const showMore = () => {
@@ -33,6 +43,10 @@ const HomePage = () => {
       setItemsToShow(8);
       setExpanded(false);
     }
+  };
+
+  const categoryBasedData = (id) => {
+    dispatch(filterProductByCategory(id));
   };
   return (
     <>
@@ -74,29 +88,16 @@ const HomePage = () => {
           </div>
           <ul className="product-filter-menu">
             <li>
-              <a href="#">TOPS</a>
+              <button onClick={() => categoryBasedData(0)}>ALL</button>
             </li>
-            <li>
-              <a href="#">JUMPSUITS</a>
-            </li>
-            <li>
-              <a href="#">LINGERIE</a>
-            </li>
-            <li>
-              <a href="#">JEANS</a>
-            </li>
-            <li>
-              <a href="#">DRESSES</a>
-            </li>
-            <li>
-              <a href="#">COATS</a>
-            </li>
-            <li>
-              <a href="#">JUMPERS</a>
-            </li>
-            <li>
-              <a href="#">LEGGINGS</a>
-            </li>
+            {categories &&
+              categories.map((category, index) => (
+                <li key={index}>
+                  <button onClick={() => categoryBasedData(category.id)}>
+                    {category.category_name}
+                  </button>
+                </li>
+              ))}
           </ul>
           <div className="row">
             {products.slice(0, itemsToShow).map((product) => (
