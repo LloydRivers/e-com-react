@@ -63,4 +63,14 @@ module.exports = {
       res.status(200).send({ status: "error", msg: "User not created" });
     }
   },
+  getUserDetails: async (req, res) => {
+    try {
+      const db = req.app.get("db");
+      const { id } = req.params;
+      const user = await db.users.get_user_details(id);
+      res.status(200).send(user[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
