@@ -1,6 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
+
+import axios from "axios";
+
+import { useSelector } from "react-redux";
+
+import { selectUser } from "../../Redux/slices/UserSlice/userSlice";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 const CheckOutPage = () => {
+  const [address, setAddress] = useState({
+    address: "",
+    city: "",
+    country: "",
+    postcode: "",
+    telephone: "",
+  });
+
+  const [isDisabled, setIsDisabled] = useState(true);
+  const { id } = useSelector(selectUser);
+  const getUserDetails = async (num) => {
+    if (num == 1) {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:5000/userDetails/${id}`
+        );
+
+        setAddress(data);
+        setIsDisabled(true);
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (num === 2) {
+      setAddress({ address: "", city: "", country: "", postcode: "" });
+      setIsDisabled(false);
+    }
+  };
   return (
     <>
       <div className="page-top-info">
@@ -25,11 +59,27 @@ const CheckOutPage = () => {
                   <div className="col-md-5">
                     <div className="cf-radio-btns address-rb">
                       <div className="cfr-item">
-                        <input type="radio" name="pm" id="one" />
+                        <input
+                          value={1}
+                          onChange={(e) =>
+                            getUserDetails(Number(e.target.value))
+                          }
+                          type="radio"
+                          name="address"
+                          id="one"
+                        />
                         <label htmlFor="one">Use my regular address</label>
                       </div>
                       <div className="cfr-item">
-                        <input type="radio" name="pm" id="two" />
+                        <input
+                          onChange={(e) =>
+                            getUserDetails(Number(e.target.value))
+                          }
+                          value={2}
+                          type="radio"
+                          name="address"
+                          id="two"
+                        />
                         <label htmlFor="two">Use a different address</label>
                       </div>
                     </div>
@@ -37,18 +87,49 @@ const CheckOutPage = () => {
                 </div>
                 <div className="row address-inputs">
                   <div className="col-md-12">
-                    <input type="text" placeholder="Address" />
-                    <input type="text" placeholder="Address line 2" />
-                    <input type="text" placeholder="Country" />
+                    <input
+                      disabled={isDisabled ? "true" : ""}
+                      onChange={(e) =>
+                        setAddress({ ...address, address: e.target.value })
+                      }
+                      value={address.address}
+                      type="text"
+                      placeholder="Address"
+                    />
+                    <input
+                      disabled={isDisabled ? "true" : ""}
+                      onChange={(e) =>
+                        setAddress({ ...address, country: e.target.value })
+                      }
+                      value={address.country}
+                      type="text"
+                      placeholder="Country"
+                    />
                   </div>
                   <div className="col-md-6">
-                    <input type="text" placeholder="Zip code" />
+                    <input
+                      disabled={isDisabled ? "true" : ""}
+                      onChange={(e) =>
+                        setAddress({ ...address, postcode: e.target.value })
+                      }
+                      value={address.postcode}
+                      type="text"
+                      placeholder="post code"
+                    />
                   </div>
                   <div className="col-md-6">
-                    <input type="text" placeholder="Phone no." />
+                    <input
+                      disabled={isDisabled ? "true" : ""}
+                      onChange={(e) =>
+                        setAddress({ ...address, telephone: e.target.value })
+                      }
+                      value={address.telephone}
+                      type="text"
+                      placeholder="Phone no."
+                    />
                   </div>
                 </div>
-                <div className="cf-title">Delievery Info</div>
+                <div className="cf-title">Delivery Info</div>
                 <div className="row shipping-btns">
                   <div className="col-6">
                     <h4>Standard</h4>
