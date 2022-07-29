@@ -21,7 +21,11 @@ const {
 
 const { getCategories } = require("./controllers/categoriesController");
 
-const { createUser, login } = require("./controllers/userController");
+const {
+  createUser,
+  login,
+  getUserDetails,
+} = require("./controllers/userController");
 
 massive(
   {
@@ -52,9 +56,10 @@ app.put("/updateProduct/:id", updateProduct);
 /****************************************/
 
 /*USERS*/
-
+app.get("/userDetails/:id", getUserDetails);
 app.post("/register", createUser);
 app.post("/login", login);
+
 /****************************************/
 
 /****************************************/
