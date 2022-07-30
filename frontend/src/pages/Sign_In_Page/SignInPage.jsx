@@ -25,8 +25,6 @@ const SignInPage = () => {
     const password = passwordRef.current.value;
 
     try {
-      console.log("before request");
-
       const { data } = await axios.post("http://localhost:5000/login", {
         email,
         password,
