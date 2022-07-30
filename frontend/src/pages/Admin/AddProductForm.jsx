@@ -13,7 +13,6 @@ const AddProductForm = () => {
   });
 
   const createProduct = async (e) => {
-    console.log(product);
     e.preventDefault();
     try {
       const { data } = await axios.post(

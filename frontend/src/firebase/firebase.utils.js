@@ -68,7 +68,6 @@ export const addCollectionAndDocuments = async (
   });
 
   await batch.commit();
-  console.log("done");
 };
 
 //helper function to isolate our app from 3rd part libraries that has data that might change
