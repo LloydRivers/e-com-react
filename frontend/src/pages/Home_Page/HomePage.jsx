@@ -28,7 +28,6 @@ const HomePage = () => {
   const dispatch = useDispatch();
 
   const categories = useSelector(selectCategories);
-  console.log(categories);
 
   useEffect(() => {
     dispatch(fetchProducts());
