@@ -2,10 +2,16 @@ import React, { useState } from "react";
 
 import axios from "axios";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import {
+  selectCartItems,
+  setDeliveryFee,
+  selectDeliveryFee,
+  selectTotal,
+} from "../../Redux/slices/CartSlices/cartSlice";
 
 import { selectUser } from "../../Redux/slices/UserSlice/userSlice";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 const CheckOutPage = () => {
   const [address, setAddress] = useState({
@@ -15,9 +21,13 @@ const CheckOutPage = () => {
     postcode: "",
     telephone: "",
   });
-
+  const dispatch = useDispatch();
   const [isDisabled, setIsDisabled] = useState(true);
   const { id } = useSelector(selectUser);
+  const cartList = useSelector(selectCartItems);
+  const deliveryFee = useSelector(selectDeliveryFee);
+  const total = useSelector(selectTotal);
+
   const getUserDetails = async (num) => {
     if (num == 1) {
       try {
@@ -119,7 +129,7 @@ const CheckOutPage = () => {
                   </div>
                   <div className="col-md-6">
                     <input
-                      disabled={isDisabled ? "true" : ""}
+                      disabled={isDisabled ? true : ""}
                       onChange={(e) =>
                         setAddress({ ...address, telephone: e.target.value })
                       }
@@ -137,7 +147,12 @@ const CheckOutPage = () => {
                   <div className="col-6">
                     <div className="cf-radio-btns">
                       <div className="cfr-item">
-                        <input type="radio" name="shipping" id="ship-1" />
+                        <input
+                          onChange={(e) => dispatch(setDeliveryFee(0))}
+                          type="radio"
+                          name="shipping"
+                          id="ship-1"
+                        />
                         <label htmlFor="ship-1">Free</label>
                       </div>
                     </div>
@@ -148,28 +163,42 @@ const CheckOutPage = () => {
                   <div className="col-6">
                     <div className="cf-radio-btns">
                       <div className="cfr-item">
+                        <input
+                          onChange={(e) => dispatch(setDeliveryFee(3))}
+                          type="radio"
+                          name="shipping"
+                          id="ship-2"
+                        />
+                        <label htmlFor="ship-2">$3</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="cf-title">Payment</div>
+                <div className="row shipping-btns">
+                  <div className="col-6">
+                    <h4>Credit / Debit Card</h4>
+                  </div>
+                  <div className="col-6">
+                    <div className="cf-radio-btns">
+                      <div className="cfr-item">
+                        <input type="radio" name="shipping" id="ship-1" />
+                        <label htmlFor="ship-1">Free</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-6">
+                    <h4>Cash on delivery delivery </h4>
+                  </div>
+                  <div className="col-6">
+                    <div className="cf-radio-btns">
+                      <div className="cfr-item">
                         <input type="radio" name="shipping" id="ship-2" />
                         <label htmlFor="ship-2">$3.45</label>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="cf-title">Payment</div>
-                <ul className="payment-list">
-                  <li>
-                    Paypal
-                    <a href="#">
-                      <img src="img/paypal.png" alt="" />
-                    </a>
-                  </li>
-                  <li>
-                    Credit / Debit card
-                    <a href="#">
-                      <img src="img/mastercart.png" alt="" />
-                    </a>
-                  </li>
-                  <li>Pay when you get the package</li>
-                </ul>
                 <button className="site-btn submit-order-btn">
                   Place Order
                 </button>
@@ -179,30 +208,26 @@ const CheckOutPage = () => {
               <div className="checkout-cart">
                 <h3>Your Cart</h3>
                 <ul className="product-list">
-                  <li>
-                    <div className="pl-thumb">
-                      <img src="img/cart/1.jpg" alt="" />
-                    </div>
-                    <h6>Animal Print Dress</h6>
-                    <p>$45.90</p>
-                  </li>
-                  <li>
-                    <div className="pl-thumb">
-                      <img src="img/cart/2.jpg" alt="" />
-                    </div>
-                    <h6>Animal Print Dress</h6>
-                    <p>$45.90</p>
-                  </li>
+                  {cartList &&
+                    cartList.map((item) => {
+                      return (
+                        <li key={item.id}>
+                          <div className="pl-thumb">
+                            <img src={item.imageurl} alt="" />
+                          </div>
+                          <h6>{item.brandname}</h6>
+                          <p>${item.price}</p>
+                        </li>
+                      );
+                    })}
                 </ul>
                 <ul className="price-list">
                   <li>
-                    Total<span>$99.90</span>
-                  </li>
-                  <li>
-                    Shipping<span>free</span>
+                    Shipping
+                    <span>{deliveryFee > 0 ? "$" + deliveryFee : "free"}</span>
                   </li>
                   <li className="total">
-                    Total<span>$99.90</span>
+                    Total<span>${total}</span>
                   </li>
                 </ul>
               </div>
