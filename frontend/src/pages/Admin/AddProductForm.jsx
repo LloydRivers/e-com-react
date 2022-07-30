@@ -29,8 +29,6 @@ const AddProductForm = () => {
           category_id: "",
         });
       }
-
-      console.log("Product added");
     } catch (error) {
       console.log(error);
     }

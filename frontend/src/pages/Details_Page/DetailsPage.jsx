@@ -6,7 +6,6 @@ import { selectProduct } from "../../Redux/slices/ProductSlices/productSlice";
 
 const DetailsPage = () => {
   const product = useSelector(selectProduct);
-  console.log("PRODUCT", JSON.stringify(product));
   const { brandname, imageurl, id, price, name } = product;
 
   return (
