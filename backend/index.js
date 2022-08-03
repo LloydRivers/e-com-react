@@ -27,6 +27,8 @@ const {
   getUserDetails,
 } = require("./controllers/userController");
 
+const { postOrder } = require("./controllers/ordersController");
+
 massive(
   {
     connectionString: POSTGRES_URI,
@@ -63,9 +65,14 @@ app.post("/login", login);
 /****************************************/
 
 /****************************************/
+
+/*CATEGORIES*/
+app.get("/categories", getCategories);
+
 /****************************************/
 
-app.get("/categories", getCategories);
+/*ORDERS*/
+app.post("/placeOrder", postOrder);
 
 app.listen((PORT = 5000), () => {
   console.log(`Server running on port ${PORT}`);
