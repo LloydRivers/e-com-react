@@ -13,11 +13,10 @@ const AddProductForm = () => {
   });
 
   const createProduct = async (e) => {
-    console.log(product);
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/createProduct",
+        `${process.env.REACT_APP_BACKEND_URL}/createProduct`,
         product
       );
       if (data.status === "success") {
@@ -30,8 +29,6 @@ const AddProductForm = () => {
           category_id: "",
         });
       }
-
-      console.log("Product added");
     } catch (error) {
       console.log(error);
     }

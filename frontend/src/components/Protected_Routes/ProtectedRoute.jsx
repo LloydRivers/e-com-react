@@ -5,7 +5,6 @@ import { selectIsLoggedIn } from "../../Redux/slices/UserSlice/userSlice";
 
 function ProtectedRoute() {
   const isAuthenticated = useSelector(selectIsLoggedIn);
-  console.log("this", isAuthenticated);
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 }

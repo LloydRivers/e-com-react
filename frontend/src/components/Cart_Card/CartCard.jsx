@@ -15,7 +15,6 @@ const CartCard = ({ cartProduct }) => {
   const dispatch = useDispatch();
 
   const cartItems = useSelector(selectCartItems);
-  console.log("CART ITEMS", cartItems);
 
   const handleChange = (e) => {
     dispatch(addToCart(cartProduct));

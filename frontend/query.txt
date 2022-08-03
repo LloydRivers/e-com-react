@@ -8,3 +8,6 @@ price VARCHAR NOT NULL,
 category_id INT NOT NULL,
 
 );
+
+
+https://e-com-backend-app.herokuapp.com/ | https://git.heroku.com/e-com-backend-app.git

@@ -21,7 +21,13 @@ const {
 
 const { getCategories } = require("./controllers/categoriesController");
 
-const { createUser, login } = require("./controllers/userController");
+const {
+  createUser,
+  login,
+  getUserDetails,
+} = require("./controllers/userController");
+
+const { postOrder } = require("./controllers/ordersController");
 
 massive(
   {
@@ -52,15 +58,21 @@ app.put("/updateProduct/:id", updateProduct);
 /****************************************/
 
 /*USERS*/
-
+app.get("/userDetails/:id", getUserDetails);
 app.post("/register", createUser);
 app.post("/login", login);
+
 /****************************************/
 
 /****************************************/
-/****************************************/
 
+/*CATEGORIES*/
 app.get("/categories", getCategories);
+
+/****************************************/
+
+/*ORDERS*/
+app.post("/placeOrder", postOrder);
 
 app.listen((PORT = 5000), () => {
   console.log(`Server running on port ${PORT}`);

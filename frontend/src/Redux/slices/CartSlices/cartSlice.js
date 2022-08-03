@@ -6,6 +6,7 @@ export const cartSlice = createSlice({
     cartItems: [],
     total: 0,
     promoCode: "summer50",
+    deliveryFee: 0,
   },
   reducers: {
     addToCart: (state, action) => {
@@ -52,6 +53,10 @@ export const cartSlice = createSlice({
         state.total = state.total * 0.5;
       }
     },
+    setDeliveryFee: (state, action) => {
+      state.deliveryFee = action.payload;
+      state.total += state.deliveryFee;
+    },
   },
 });
 
@@ -61,10 +66,12 @@ export const {
   clearCart,
   setPromoCode,
   checkPromoCode,
+  setDeliveryFee,
 } = cartSlice.actions;
 
 export const selectCartItems = (state) => state.cart.cartItems;
 export const selectQuantity = (state) => state.cart.quantity;
 export const selectTotal = (state) => state.cart.total;
+export const selectDeliveryFee = (state) => state.cart.deliveryFee;
 
 export default cartSlice.reducer;

@@ -7,37 +7,34 @@ module.exports = {
       const { email, password } = req.body;
       const db = req.app.get("db");
       const user = await db.users.find_one_by_email(email);
-
+      console.log(user);
       const singleUser = user[0];
+      if (singleUser) {
+        const isMatch = await bcrypt.compare(password, singleUser.password);
+        console.log(isMatch);
+        if (!isMatch) {
+          res
+            .status(200)
+            .send({ status: "error", message: "Invalid credentials" });
+        }
 
-      if (!user) {
-        return res
-          .status(400)
-          .send({ message: "User not found", status: "error" });
+        const token = jwt.sign(
+          {
+            id: singleUser.id,
+            name: singleUser.name,
+            email: singleUser.email,
+          },
+          process.env.JWT_SECRET
+        );
+
+        res.status(200).send({
+          status: "success",
+          message: "user logged in successfully",
+          token,
+        });
+      } else {
+        res.status(200).send({ message: "User not found", status: "error" });
       }
-
-      const isMatch = await bcrypt.compare(password, singleUser.password);
-      console.log(isMatch);
-      if (!isMatch) {
-        return res
-          .status(200)
-          .send({ status: "error", message: "Invalid credentials" });
-      }
-
-      const token = jwt.sign(
-        {
-          id: singleUser.id,
-          name: singleUser.name,
-          email: singleUser.email,
-        },
-        process.env.JWT_SECRET
-      );
-
-      res.status(200).send({
-        status: "success",
-        message: "user logged in successfully",
-        token,
-      });
     } catch (error) {
       console.log(error);
     }
@@ -61,6 +58,16 @@ module.exports = {
     } catch (error) {
       console.log(error);
       res.status(200).send({ status: "error", msg: "User not created" });
+    }
+  },
+  getUserDetails: async (req, res) => {
+    try {
+      const db = req.app.get("db");
+      const { id } = req.params;
+      const user = await db.users.get_user_details(id);
+      res.status(200).send(user[0]);
+    } catch (error) {
+      console.log(error);
     }
   },
 };

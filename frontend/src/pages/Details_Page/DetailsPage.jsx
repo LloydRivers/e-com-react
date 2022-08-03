@@ -1,19 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { selectProduct } from "../../Redux/slices/ProductSlices/productSlice";
-
+import { addToCart } from "../../Redux/slices/CartSlices/cartSlice";
 const DetailsPage = () => {
   const product = useSelector(selectProduct);
-  console.log("PRODUCT", JSON.stringify(product));
   const { brandname, imageurl, id, price, name } = product;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleBuyNow = () => {
+    dispatch(addToCart(product));
+    navigate("/cart");
+  };
 
   return (
     <>
       <div className="page-top-info">
         <div className="container">
-          {/* <h4>Category: {category}</h4> */}
           <div className="site-pagination">
             <a href="">Home</a> /<a href="">Shop</a>
           </div>
@@ -33,56 +38,11 @@ const DetailsPage = () => {
             </div>
             <div className="col-lg-6 product-details">
               <h2 className="p-title">{name}</h2>
-              <h3 className="p-price"> {price}</h3>
-              <h4 className="p-stock">
-                Available: <span>In Stock</span>
-              </h4>
-              <div className="p-rating">
-                <i className="fa fa-star-o"></i>
-                <i className="fa fa-star-o"></i>
-                <i className="fa fa-star-o"></i>
-                <i className="fa fa-star-o"></i>
-                <i className="fa fa-star-o fa-fade"></i>
-              </div>
-              <div className="p-review">
-                <a href="">3 reviews</a>|<a href="">Add your review</a>
-              </div>
-              <div className="fw-size-choose">
-                <p>Size</p>
-                <div className="sc-item">
-                  <input type="radio" name="sc" id="xs-size" />
-                  <label htmlFor="xs-size">32</label>
-                </div>
-                <div className="sc-item">
-                  <input type="radio" name="sc" id="s-size" />
-                  <label htmlFor="s-size">34</label>
-                </div>
-                <div className="sc-item">
-                  <input type="radio" name="sc" id="m-size" checked="" />
-                  <label htmlFor="m-size">36</label>
-                </div>
-                <div className="sc-item">
-                  <input type="radio" name="sc" id="l-size" />
-                  <label htmlFor="l-size">38</label>
-                </div>
-                <div className="sc-item disable">
-                  <input type="radio" name="sc" id="xl-size" disabled />
-                  <label htmlFor="xl-size">40</label>
-                </div>
-                <div className="sc-item">
-                  <input type="radio" name="sc" id="xxl-size" />
-                  <label htmlFor="xxl-size">42</label>
-                </div>
-              </div>
-              <div className="quantity">
-                <p>Quantity</p>
-                <div className="pro-qty">
-                  <input type="text" value="1" />
-                </div>
-              </div>
-              <Link to="/cart" className="site-btn">
+              <h3 className="p-price"> ${price}</h3>
+
+              <button onClick={handleBuyNow} className="site-btn">
                 BUY NOW
-              </Link>
+              </button>
               <div id="accordion" className="accordion-area">
                 <div className="panel">
                   <div className="panel-header" id="headingOne">

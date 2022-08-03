@@ -30,7 +30,6 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    console.log("logout");
     dispatch(logout());
   };
 

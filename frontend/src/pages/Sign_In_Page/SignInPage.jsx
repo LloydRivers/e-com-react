@@ -25,24 +25,27 @@ const SignInPage = () => {
     const password = passwordRef.current.value;
 
     try {
-      console.log("before request");
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/login`,
+        {
+          email,
+          password,
+        }
+      );
 
-      const { data } = await axios.post("http://localhost:5000/login", {
-        email,
-        password,
-      });
+      console.log(data);
       if (data.status === "success") {
         const myDecodedToken = decodeToken(data.token);
         dispatch(login({ decodedToken: myDecodedToken, token: data.token }));
-
-        //state.token = data.token
-        //state.isLoggedIn = true
-        //state.user = decoded(data.token)
 
         navigate("/");
       } else {
         setError(true);
         setErrorMessage(data.message);
+        setTimeout(() => {
+          setError(false);
+          setErrorMessage("");
+        }, 3000);
       }
     } catch (error) {
       console.log(error);
@@ -52,15 +55,19 @@ const SignInPage = () => {
   return (
     <div className="login">
       <div className="form">
+        {error && (
+          <p style={{ color: "red", fontWeight: "bold" }}>{errorMessage}</p>
+        )}
         <form onSubmit={handleSubmit} className="login-form">
-          <input ref={emailRef} type="text" placeholder="email" />
+          <input required ref={emailRef} type="text" placeholder="email" />
           <input
+            required
             ref={passwordRef}
             type="password"
             placeholder="password"
-            required
           />
           <button>Sign in </button>
+
           <p style={{ marginTop: "10px", paddingLeft: "0 !important" }}>
             Don't have an account? <Link to="/register">Sign up!</Link>
           </p>

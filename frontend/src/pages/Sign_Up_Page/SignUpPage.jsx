@@ -17,14 +17,17 @@ const SignUpPage = () => {
     e.preventDefault();
 
     try {
-      const { data } = await axios.post("http://localhost:5000/register", {
-        name: nameRef.current.value,
-        surname: surnameRef.current.value,
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-        telephone: telephoneRef.current.value,
-        address: addressRef.current.value,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/register`,
+        {
+          name: nameRef.current.value,
+          surname: surnameRef.current.value,
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+          telephone: telephoneRef.current.value,
+          address: addressRef.current.value,
+        }
+      );
 
       nameRef.current.value = "";
       surnameRef.current.value = "";
