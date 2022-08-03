@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
 import { useSelector, useDispatch } from "react-redux";
+
+import { PaymentCard } from "../../components";
 
 import {
   selectCartItems,
@@ -21,12 +24,17 @@ const CheckOutPage = () => {
     postcode: "",
     telephone: "",
   });
-  const dispatch = useDispatch();
+  const [isCreditCard, setIsCreditCard] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
+  console.log(isCreditCard);
+
+  const dispatch = useDispatch();
   const { id } = useSelector(selectUser);
   const cartList = useSelector(selectCartItems);
   const deliveryFee = useSelector(selectDeliveryFee);
   const total = useSelector(selectTotal);
+
+  const navigate = useNavigate();
 
   const getUserDetails = async (num) => {
     if (num == 1) {
@@ -43,6 +51,25 @@ const CheckOutPage = () => {
     } else if (num === 2) {
       setAddress({ address: "", city: "", country: "", postcode: "" });
       setIsDisabled(false);
+    }
+  };
+
+  const placeOrder = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post(`http://localhost:5000/placeOrder`, {
+        cartList,
+        address,
+        deliveryType: deliveryFee > 0 ? "urgent" : "normal",
+        total,
+        deliveryFee: deliveryFee,
+        id,
+        paymentType: isCreditCard,
+      });
+
+      navigate("/");
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
@@ -98,7 +125,8 @@ const CheckOutPage = () => {
                 <div className="row address-inputs">
                   <div className="col-md-12">
                     <input
-                      disabled={isDisabled ? "true" : ""}
+                      required
+                      disabled={isDisabled ? true : ""}
                       onChange={(e) =>
                         setAddress({ ...address, address: e.target.value })
                       }
@@ -107,7 +135,8 @@ const CheckOutPage = () => {
                       placeholder="Address"
                     />
                     <input
-                      disabled={isDisabled ? "true" : ""}
+                      required
+                      disabled={isDisabled ? true : ""}
                       onChange={(e) =>
                         setAddress({ ...address, country: e.target.value })
                       }
@@ -118,7 +147,8 @@ const CheckOutPage = () => {
                   </div>
                   <div className="col-md-6">
                     <input
-                      disabled={isDisabled ? "true" : ""}
+                      required
+                      disabled={isDisabled ? true : ""}
                       onChange={(e) =>
                         setAddress({ ...address, postcode: e.target.value })
                       }
@@ -129,6 +159,7 @@ const CheckOutPage = () => {
                   </div>
                   <div className="col-md-6">
                     <input
+                      required
                       disabled={isDisabled ? true : ""}
                       onChange={(e) =>
                         setAddress({ ...address, telephone: e.target.value })
@@ -148,6 +179,7 @@ const CheckOutPage = () => {
                     <div className="cf-radio-btns">
                       <div className="cfr-item">
                         <input
+                          required
                           onChange={(e) => dispatch(setDeliveryFee(0))}
                           type="radio"
                           name="shipping"
@@ -164,6 +196,7 @@ const CheckOutPage = () => {
                     <div className="cf-radio-btns">
                       <div className="cfr-item">
                         <input
+                          required
                           onChange={(e) => dispatch(setDeliveryFee(3))}
                           type="radio"
                           name="shipping"
@@ -177,29 +210,45 @@ const CheckOutPage = () => {
                 <div className="cf-title">Payment</div>
                 <div className="row shipping-btns">
                   <div className="col-6">
-                    <h4>Credit / Debit Card</h4>
-                  </div>
-                  <div className="col-6">
                     <div className="cf-radio-btns">
                       <div className="cfr-item">
-                        <input type="radio" name="shipping" id="ship-1" />
-                        <label htmlFor="ship-1">Free</label>
+                        <input
+                          required
+                          onChange={(e) => setIsCreditCard(e.target.value)}
+                          type="radio"
+                          name="payment-details"
+                          id="credit-card"
+                          value="credit-card"
+                        />
+                        <label htmlFor="credit-card">Credit / Debit Card</label>
                       </div>
                     </div>
                   </div>
-                  <div className="col-6">
-                    <h4>Cash on delivery delivery </h4>
-                  </div>
+
                   <div className="col-6">
                     <div className="cf-radio-btns">
                       <div className="cfr-item">
-                        <input type="radio" name="shipping" id="ship-2" />
-                        <label htmlFor="ship-2">$3.45</label>
+                        <input
+                          required
+                          onChange={(e) => setIsCreditCard(e.target.value)}
+                          type="radio"
+                          name="payment-details"
+                          id="cash-on-delivery"
+                          value="cash-on-delivery"
+                        />
+                        <label htmlFor="cash-on-delivery">
+                          Cash on delivery
+                        </label>
                       </div>
                     </div>
                   </div>
                 </div>
-                <button className="site-btn submit-order-btn">
+                {isCreditCard === "credit-card" ? <PaymentCard /> : null}
+
+                <button
+                  onClick={(e) => placeOrder(e)}
+                  className="site-btn submit-order-btn"
+                >
                   Place Order
                 </button>
               </form>
