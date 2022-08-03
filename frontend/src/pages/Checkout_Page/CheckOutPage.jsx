@@ -7,6 +7,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { PaymentCard } from "../../components";
 
+import { clearCart } from "../../Redux/slices/CartSlices/cartSlice";
+
+import Swal from "sweetalert2";
+
 import {
   selectCartItems,
   setDeliveryFee,
@@ -26,7 +30,7 @@ const CheckOutPage = () => {
   });
   const [isCreditCard, setIsCreditCard] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
-  console.log(isCreditCard);
+  const [deliveryType, setDeliveryType] = useState("");
 
   const dispatch = useDispatch();
   const { id } = useSelector(selectUser);
@@ -40,7 +44,7 @@ const CheckOutPage = () => {
     if (num == 1) {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/userDetails/${id}`
+          `${process.env.REACT_APP_BACKEND_URL}/userDetails/${id}`
         );
 
         setAddress(data);
@@ -53,23 +57,66 @@ const CheckOutPage = () => {
       setIsDisabled(false);
     }
   };
-
+  // dispatch(setDeliveryFee(3))
   const placeOrder = async (e) => {
     e.preventDefault();
-    try {
-      const { data } = await axios.post(`http://localhost:5000/placeOrder`, {
-        cartList,
-        address,
-        deliveryType: deliveryFee > 0 ? "urgent" : "normal",
-        total,
-        deliveryFee: deliveryFee,
-        id,
-        paymentType: isCreditCard,
+    console.log(address);
+    if (
+      isCreditCard === "" ||
+      address.address === "" ||
+      address.country === "" ||
+      address.postcode === "" ||
+      address.telephone === "" ||
+      deliveryType === ""
+    ) {
+      Swal.fire({
+        title: "Please fill all the fields",
+        icon: "error",
       });
+    } else {
+      try {
+        const { data } = await axios.post(
+          `${process.env.REACT_APP_BACKEND_URL}/placeOrder`,
+          {
+            cartList,
+            address,
+            deliveryType: deliveryFee > 0 ? "urgent" : "normal",
+            total,
+            deliveryFee: deliveryFee,
+            id,
+            paymentType: isCreditCard,
+          }
+        );
 
-      navigate("/");
-    } catch (error) {
-      console.log(error);
+        if (data.status === "success") {
+          Swal.fire({
+            title: "Order Placed",
+            text: "Order has been placed successfully",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 2500,
+          });
+          navigate("/");
+          dispatch(clearCart());
+        }
+
+        // navigate("/");
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const handleDeliveryType = (e) => {
+    const { value } = e.target;
+    if (value === "standard") {
+      setDeliveryType("standard");
+      dispatch(setDeliveryFee(0));
+    }
+    if (value === "urgent") {
+      setDeliveryType("urgent");
+      dispatch(setDeliveryFee(3));
     }
   };
   return (
@@ -97,6 +144,7 @@ const CheckOutPage = () => {
                     <div className="cf-radio-btns address-rb">
                       <div className="cfr-item">
                         <input
+                          required
                           value={1}
                           onChange={(e) =>
                             getUserDetails(Number(e.target.value))
@@ -109,6 +157,7 @@ const CheckOutPage = () => {
                       </div>
                       <div className="cfr-item">
                         <input
+                          required
                           onChange={(e) =>
                             getUserDetails(Number(e.target.value))
                           }
@@ -179,8 +228,9 @@ const CheckOutPage = () => {
                     <div className="cf-radio-btns">
                       <div className="cfr-item">
                         <input
+                          value="standard"
                           required
-                          onChange={(e) => dispatch(setDeliveryFee(0))}
+                          onChange={(e) => handleDeliveryType(e)}
                           type="radio"
                           name="shipping"
                           id="ship-1"
@@ -190,14 +240,15 @@ const CheckOutPage = () => {
                     </div>
                   </div>
                   <div className="col-6">
-                    <h4>Next day delievery </h4>
+                    <h4>Next day delivery </h4>
                   </div>
                   <div className="col-6">
                     <div className="cf-radio-btns">
                       <div className="cfr-item">
                         <input
+                          value="urgent"
                           required
-                          onChange={(e) => dispatch(setDeliveryFee(3))}
+                          onChange={(e) => handleDeliveryType(e)}
                           type="radio"
                           name="shipping"
                           id="ship-2"

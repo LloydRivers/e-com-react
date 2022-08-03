@@ -16,7 +16,7 @@ const AddProductForm = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/createProduct",
+        `${process.env.REACT_APP_BACKEND_URL}/createProduct`,
         product
       );
       if (data.status === "success") {
