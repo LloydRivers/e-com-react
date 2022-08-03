@@ -37,7 +37,7 @@ const data = () => {
       .then((res) => res.data);
   } catch (error) {
     console.log(error);
-  }
+  } 
 };
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", data);
