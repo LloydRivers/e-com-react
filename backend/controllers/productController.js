@@ -10,7 +10,7 @@ module.exports = {
       res.status(200).send(products);
     } catch (error) {
       console.log(error);
-      res.status(500).send(error);
+      res.status(500).send("We have an Error");
     }
   },
   getSpecificProduct: async (req, res) => {

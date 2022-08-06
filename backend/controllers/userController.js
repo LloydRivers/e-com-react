@@ -3,35 +3,37 @@ const jwt = require("jsonwebtoken");
 
 module.exports = {
   login: async (req, res) => {
+    // res.send({ status: "success", message: "Login Successful" });
     try {
       const { email, password } = req.body;
       const db = req.app.get("db");
       const user = await db.users.find_one_by_email(email);
       console.log(user);
+
       const singleUser = user[0];
       if (singleUser) {
         const isMatch = await bcrypt.compare(password, singleUser.password);
         console.log(isMatch);
-        if (!isMatch) {
+
+        if (isMatch) {
+          const token = jwt.sign(
+            {
+              id: singleUser.id,
+              name: singleUser.name,
+              email: singleUser.email,
+            },
+            "secret"
+          );
+          res.status(200).send({
+            status: "success",
+            message: "user logged in successfully",
+            token,
+          });
+        } else {
           res
             .status(200)
             .send({ status: "error", message: "Invalid credentials" });
         }
-
-        const token = jwt.sign(
-          {
-            id: singleUser.id,
-            name: singleUser.name,
-            email: singleUser.email,
-          },
-          process.env.JWT_SECRET
-        );
-
-        res.status(200).send({
-          status: "success",
-          message: "user logged in successfully",
-          token,
-        });
       } else {
         res.status(200).send({ message: "User not found", status: "error" });
       }
