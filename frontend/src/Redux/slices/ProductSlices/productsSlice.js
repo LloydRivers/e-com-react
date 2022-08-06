@@ -33,11 +33,11 @@ import axios from "axios";
 const data = () => {
   try {
     return axios
-      .get("http://localhost:5000/getProducts")
+      .get(`${process.env.REACT_APP_BACKEND_URL}/getProducts`)
       .then((res) => res.data);
   } catch (error) {
     console.log(error);
-  } 
+  }
 };
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", data);

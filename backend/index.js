@@ -1,10 +1,11 @@
+require("dotenv").config();
 // create express app
 const express = require("express");
 const app = express();
 // Adding MassiveJS
 const massive = require("massive");
-require("dotenv").config();
-let { POSTGRES_URI, PORT } = process.env;
+
+let PORT = process.env.PORT || 3000;
 
 const cors = require("cors");
 
@@ -31,7 +32,7 @@ const { postOrder } = require("./controllers/ordersController");
 
 massive(
   {
-    connectionString: POSTGRES_URI,
+    connectionString: process.env.POSTGRES_URI,
     ssl: { rejectUnauthorized: false },
   },
   {
@@ -52,6 +53,14 @@ app.get("/getSpecificProduct/:id", getSpecificProduct);
 app.post("/createProduct", createProduct);
 app.delete("/deleteProduct/:id", deleteProduct);
 app.put("/updateProduct/:id", updateProduct);
+
+app.get("/test", (req, res) => {
+  res.send("Connected");
+});
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 /****************************************/
 /****************************************/
@@ -74,6 +83,6 @@ app.get("/categories", getCategories);
 /*ORDERS*/
 app.post("/placeOrder", postOrder);
 
-app.listen((PORT = 5000), () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

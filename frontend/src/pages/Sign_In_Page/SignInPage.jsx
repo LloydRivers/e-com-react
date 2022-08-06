@@ -19,8 +19,9 @@ const SignInPage = () => {
   const passwordRef = useRef();
 
   const handleSubmit = async (e) => {
+    console.log("Submit Clicked!");
     e.preventDefault();
-
+    console.log(`${process.env.REACT_APP_BACKEND_URL}/login`);
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
@@ -48,6 +49,7 @@ const SignInPage = () => {
         }, 3000);
       }
     } catch (error) {
+      console.log("err");
       console.log(error);
     }
   };

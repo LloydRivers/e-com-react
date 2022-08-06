@@ -5,20 +5,21 @@ import { addToCart } from "../../Redux/slices/CartSlices/cartSlice";
 
 import {
   selectCartItems,
-  selectTotal,
-  selectQuantity,
+  changeCartQuantity,
 } from "../../Redux/slices/CartSlices/cartSlice";
 
 const CartCard = ({ cartProduct }) => {
-  const { brandname, price, imageurl, quantity } = cartProduct;
+  const { id, brandname, price, imageurl, quantity } = cartProduct;
   const [itemQuantity, setItemQuantity] = useState(quantity);
   const dispatch = useDispatch();
 
   const cartItems = useSelector(selectCartItems);
 
-  const handleChange = (e) => {
-    dispatch(addToCart(cartProduct));
-    setItemQuantity(Number(e.target.value));
+  const handleChange = (id, val) => {
+    console.log(id, val);
+
+    dispatch(changeCartQuantity({ id, val }));
+    setItemQuantity(Number(val));
   };
   return (
     <tr style={{ borderBottom: "1px solid #dadada" }}>
@@ -29,7 +30,7 @@ const CartCard = ({ cartProduct }) => {
         <div className="quantity">
           <div className="pro-qty">
             <input
-              onChange={handleChange}
+              onChange={(e) => handleChange(id, e.target.value)}
               type="number"
               value={itemQuantity}
               min={1}

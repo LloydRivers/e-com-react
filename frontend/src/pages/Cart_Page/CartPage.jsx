@@ -8,6 +8,8 @@ import {
   selectCartItems,
   selectTotal,
   checkPromoCode,
+  calculateTotal,
+  selectTotalWithTax,
 } from "../../Redux/slices/CartSlices/cartSlice";
 
 const CartPage = () => {
@@ -18,10 +20,16 @@ const CartPage = () => {
 
   const total = useSelector(selectTotal);
 
+  const totalWithTax = useSelector(selectTotalWithTax);
+
   const handlePromoCode = (e) => {
     setPromoCode("");
     dispatch(checkPromoCode(promoCode));
   };
+
+  useEffect(() => {
+    dispatch(calculateTotal());
+  }, [cartList]);
 
   return (
     <>
@@ -68,7 +76,7 @@ const CartPage = () => {
                 {cartList.length > 0 ? (
                   <div className="total-cost">
                     <h6>
-                      Total with tax: <span>${total}</span>
+                      Total with tax: <span>${totalWithTax}</span>
                     </h6>
                   </div>
                 ) : null}
