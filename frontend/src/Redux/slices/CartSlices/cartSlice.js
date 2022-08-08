@@ -38,18 +38,19 @@ export const cartSlice = createSlice({
       state.totalWithTax = state.total * 1.2;
     },
     changeCartQuantity: (state, action) => {
+      console.log("action.payload", action.payload);
       //Match the ID, and change quantity on that product.
       const { id, val } = action.payload;
       state.cartItems = state.cartItems.map((item) => {
         if (item.id === Number(id)) {
-          return { ...item, quantity: val };
+          return { ...item, quantity: Number(val) };
         } else {
           return { ...item };
         }
       });
 
-      state.items = state.cartItems.reduce((acc, item) => {
-        return acc + item.quantity;
+      state.items = state.cartItems.forEach((item) => {
+        state.items += item.quantity;
       });
     },
     removeFromCart: (state, action) => {
@@ -66,13 +67,13 @@ export const cartSlice = createSlice({
       state.totalWithTax = 0;
       state.items = 0;
     },
-    setPromoCode: (state, action) => {
-      state.promoCode = action.payload;
-      if (state.activePromocode[action.payload]) {
-        state.total =
-          state.total - state.total * state.activePromoCode.action.payload;
-      }
-    },
+    // setPromoCode: (state, action) => {
+    //   state.promoCode = action.payload;
+    //   if (state.activePromocode[action.payload]) {
+    //     state.total =
+    //       state.total - state.total * state.activePromoCode.action.payload;
+    //   }
+    // },
     checkPromoCode: (state, action) => {
       // if the action.payload === state.promoCode, then apply a discount of 50%
       if (action.payload === state.promoCode) {

@@ -16,8 +16,6 @@ const CartCard = ({ cartProduct }) => {
   const cartItems = useSelector(selectCartItems);
 
   const handleChange = (id, val) => {
-    console.log(id, val);
-
     dispatch(changeCartQuantity({ id, val }));
     setItemQuantity(Number(val));
   };
