@@ -6,7 +6,6 @@ export const cartSlice = createSlice({
     cartItems: [],
     total: 0,
     totalWithTax: 0,
-    promoCode: "summer50",
     deliveryFee: 0,
     items: 0,
   },
@@ -54,10 +53,18 @@ export const cartSlice = createSlice({
       });
     },
     removeFromCart: (state, action) => {
+      console.log(
+        "state.cartItems before filter runs",
+        state.cartItems.length,
+        "quantity",
+        state.quantity
+      );
+      console.log("action.payload", action.payload);
       state.cartItems = state.cartItems.filter(
         (cartItem) => cartItem.id !== action.payload.id
       );
-      state.quantity -= 1;
+
+      // state.quantity -= 1;
       state.total -= Number(action.payload.price) * 1.2;
     },
     clearCart: (state) => {
@@ -67,19 +74,7 @@ export const cartSlice = createSlice({
       state.totalWithTax = 0;
       state.items = 0;
     },
-    // setPromoCode: (state, action) => {
-    //   state.promoCode = action.payload;
-    //   if (state.activePromocode[action.payload]) {
-    //     state.total =
-    //       state.total - state.total * state.activePromoCode.action.payload;
-    //   }
-    // },
-    checkPromoCode: (state, action) => {
-      // if the action.payload === state.promoCode, then apply a discount of 50%
-      if (action.payload === state.promoCode) {
-        state.total = state.total * 0.5;
-      }
-    },
+
     setDeliveryFee: (state, action) => {
       state.deliveryFee = action.payload;
       state.total += state.deliveryFee;
