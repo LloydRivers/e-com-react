@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { addToCart } from "../../Redux/slices/CartSlices/cartSlice";
@@ -6,6 +6,7 @@ import { addToCart } from "../../Redux/slices/CartSlices/cartSlice";
 import {
   selectCartItems,
   changeCartQuantity,
+  removeFromCart,
 } from "../../Redux/slices/CartSlices/cartSlice";
 
 const CartCard = ({ cartProduct }) => {
@@ -19,8 +20,17 @@ const CartCard = ({ cartProduct }) => {
     dispatch(changeCartQuantity({ id, val }));
     setItemQuantity(Number(val));
   };
+  const handleDelete = (id) => {
+    console.log(id);
+    dispatch(removeFromCart(id));
+  };
+
   return (
-    <tr style={{ borderBottom: "1px solid #dadada" }}>
+    <tr
+      style={{
+        borderBottom: "1px solid #dadada",
+      }}
+    >
       <td className="product-col">
         <img src={`${imageurl}`} alt="" />
       </td>
@@ -39,7 +49,22 @@ const CartCard = ({ cartProduct }) => {
       <td className="size-col">
         <h4>Size M</h4>
       </td>
-      <td className="total-col">{<h4>${Number(price) * itemQuantity}</h4>}</td>
+      <td className="total-col">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "end",
+            alignItems: "baseLine",
+          }}
+        >
+          {<h4>${Number(price) * itemQuantity}</h4>}
+          <i
+            onClick={() => handleDelete(id)}
+            style={{ marginLeft: "5px", color: "#f51167" }}
+            class="fas fa-trash"
+          ></i>
+        </div>
+      </td>
     </tr>
   );
 };

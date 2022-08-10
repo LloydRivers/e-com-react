@@ -6,7 +6,6 @@ import { CartCard } from "components";
 
 import {
   selectCartItems,
-  selectTotal,
   checkPromoCode,
   calculateTotal,
   selectTotalWithTax,
@@ -17,8 +16,6 @@ const CartPage = () => {
   const dispatch = useDispatch();
 
   const cartList = useSelector(selectCartItems);
-
-  const total = useSelector(selectTotal);
 
   const totalWithTax = useSelector(selectTotalWithTax);
 
@@ -37,7 +34,10 @@ const CartPage = () => {
         <div className="container">
           <h4>Your cart</h4>
           <div className="site-pagination">
-            <a href="">Home</a> /<a href="">Your cart</a>
+            <Link to="/">Home</Link> /
+            <span style={{ paddingLeft: "5px" }} to="/cart">
+              Your cart
+            </span>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@ const CartPage = () => {
                           <tr>
                             <th className="product-th">Product</th>
                             <th className="quy-th">Quantity</th>
-                            <th className="size-th">SizeSize</th>
+                            <th className="size-th">Size</th>
                             <th className="total-th">Price</th>
                           </tr>
                         </thead>
@@ -83,17 +83,6 @@ const CartPage = () => {
               </div>
             </div>
             <div className="col-lg-4 card-right">
-              <form className="promo-code-form">
-                <input
-                  value={promoCode}
-                  onChange={(e) => setPromoCode(e.target.value)}
-                  type="text"
-                  placeholder="Enter promo code"
-                />
-                <button type="button" onClick={handlePromoCode}>
-                  Submit
-                </button>
-              </form>
               {cartList.length ? (
                 <>
                   <Link to="/checkout" className="site-btn">

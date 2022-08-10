@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import axios from "axios";
 
@@ -15,7 +15,7 @@ import {
   selectCartItems,
   setDeliveryFee,
   selectDeliveryFee,
-  selectTotal,
+  selectTotalWithTax,
 } from "../../Redux/slices/CartSlices/cartSlice";
 
 import { selectUser } from "../../Redux/slices/UserSlice/userSlice";
@@ -36,7 +36,7 @@ const CheckOutPage = () => {
   const { id } = useSelector(selectUser);
   const cartList = useSelector(selectCartItems);
   const deliveryFee = useSelector(selectDeliveryFee);
-  const total = useSelector(selectTotal);
+  const totalWithTax = useSelector(selectTotalWithTax);
 
   const navigate = useNavigate();
 
@@ -81,7 +81,7 @@ const CheckOutPage = () => {
             cartList,
             address,
             deliveryType: deliveryFee > 0 ? "urgent" : "normal",
-            total,
+            total: totalWithTax,
             deliveryFee: deliveryFee,
             id,
             paymentType: isCreditCard,
@@ -123,9 +123,12 @@ const CheckOutPage = () => {
     <>
       <div className="page-top-info">
         <div className="container">
-          <h4>Your cart</h4>
+          <h4>CHECKOUT</h4>
           <div className="site-pagination">
-            <a href="">Home</a> /<a href="">Your cart</a>
+            <Link to="/">Home</Link> /
+            <span style={{ paddingLeft: "5px" }} href="">
+              Checkout
+            </span>
           </div>
         </div>
       </div>
@@ -327,7 +330,7 @@ const CheckOutPage = () => {
                     <span>{deliveryFee > 0 ? "$" + deliveryFee : "free"}</span>
                   </li>
                   <li className="total">
-                    Total<span>${total}</span>
+                    Total<span>${totalWithTax}</span>
                   </li>
                 </ul>
               </div>

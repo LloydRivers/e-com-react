@@ -44,6 +44,7 @@ const AddProductForm = () => {
           <label>
             <span className="brandName">Brand name:</span>
             <input
+              className="admin-input "
               value={product.brandName}
               onChange={(event) =>
                 setProduct({
@@ -58,6 +59,7 @@ const AddProductForm = () => {
           <label>
             <span className="color">Color:</span>
             <input
+              className="admin-input "
               value={product.color}
               onChange={(event) =>
                 setProduct({
@@ -72,6 +74,7 @@ const AddProductForm = () => {
           <label>
             <span className="fname">Image:</span>
             <input
+              className="admin-input "
               value={product.imageUrl}
               onChange={(event) =>
                 setProduct({
@@ -86,6 +89,7 @@ const AddProductForm = () => {
           <label>
             <span className="fname">Name:</span>
             <input
+              className="admin-input "
               value={product.name}
               onChange={(event) =>
                 setProduct({
@@ -100,6 +104,7 @@ const AddProductForm = () => {
           <label>
             <span>Price:</span>
             <input
+              className="admin-input "
               value={product.price}
               onChange={(event) =>
                 setProduct({
@@ -114,6 +119,7 @@ const AddProductForm = () => {
           <label htmlFor="category_id">
             <span>Category ID:</span>
             <input
+              className="admin-input"
               value={product.category_id}
               onChange={(event) =>
                 setProduct({

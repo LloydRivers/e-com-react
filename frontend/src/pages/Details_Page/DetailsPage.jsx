@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import { selectProduct } from "../../Redux/slices/ProductSlices/productSlice";
 import { addToCart } from "../../Redux/slices/CartSlices/cartSlice";
@@ -20,7 +20,10 @@ const DetailsPage = () => {
       <div className="page-top-info">
         <div className="container">
           <div className="site-pagination">
-            <a href="">Home</a> /<a href="">Shop</a>
+            <Link to="/">Home</Link> /
+            <span style={{ paddingLeft: "5px" }} href="">
+              Details
+            </span>
           </div>
         </div>
       </div>
@@ -28,7 +31,7 @@ const DetailsPage = () => {
       <section className="product-section">
         <div className="container">
           <div className="back-link">
-            <a href="./category.html"> &lt;&lt; Back to Category</a>
+            <Link to="/"> &lt;&lt; Continue shoppig</Link>
           </div>
           <div className="row">
             <div className="col-lg-6">
@@ -130,12 +133,12 @@ const DetailsPage = () => {
                     data-parent="#accordion"
                   >
                     <div className="panel-body">
-                      <h4>7 Days Returns</h4>
+                      <h4 style={{ paddingLeft: "25px" }}>7 Days Returns</h4>
                       <p>
                         Cash on Delivery Available
                         <br />
                         Home Delivery
-                        <span>3 - 4 days</span>
+                        <span style={{ paddingLeft: "5px" }}>3 - 4 days: </span>
                       </p>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
