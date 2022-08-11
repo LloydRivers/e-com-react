@@ -42,8 +42,19 @@ module.exports = {
     }
   },
   createUser: async (req, res) => {
+    // res.json(req.body);
     const db = req.app.get("db");
-    const { name, surname, password, telephone, email, address } = req.body;
+    const {
+      name,
+      surname,
+      email,
+      password,
+      telephone,
+      address,
+      city,
+      country,
+      postcode,
+    } = req.body;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -54,7 +65,10 @@ module.exports = {
         email,
         hashedPassword,
         telephone,
-        address
+        address,
+        city,
+        country,
+        postcode
       );
       res.status(200).send({ status: "success", msg: "User created" });
     } catch (error) {
