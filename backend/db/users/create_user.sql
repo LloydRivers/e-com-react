@@ -1,4 +1,4 @@
-INSERT INTO users (name, surname, email, password, telephone, address) VALUES ($1, $2, $3, $4, $5, $6);
+INSERT INTO users (name, surname, email, password, telephone, address, city, country, postcode) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);
 
 
 
