@@ -20,10 +20,6 @@ const CartCard = ({ cartProduct }) => {
     dispatch(changeCartQuantity({ id, val }));
     setItemQuantity(Number(val));
   };
-  const handleDelete = (id) => {
-    console.log(id);
-    dispatch(removeFromCart(id));
-  };
 
   return (
     <tr
@@ -58,11 +54,6 @@ const CartCard = ({ cartProduct }) => {
           }}
         >
           {<h4>${Number(price) * itemQuantity}</h4>}
-          <i
-            onClick={() => handleDelete(id)}
-            style={{ marginLeft: "5px", color: "#f51167" }}
-            class="fas fa-trash"
-          ></i>
         </div>
       </td>
     </tr>
