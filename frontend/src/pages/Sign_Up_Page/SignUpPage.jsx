@@ -8,10 +8,13 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   const nameRef = useRef();
   const surnameRef = useRef();
+  const emailRef = useRef();
   const passwordRef = useRef();
   const telephoneRef = useRef();
-  const emailRef = useRef();
   const addressRef = useRef();
+  const cityRef = useRef();
+  const postcodeRef = useRef();
+  const countryRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +29,9 @@ const SignUpPage = () => {
           password: passwordRef.current.value,
           telephone: telephoneRef.current.value,
           address: addressRef.current.value,
+          city: cityRef.current.value,
+          postcode: postcodeRef.current.value,
+          country: countryRef.current.value,
         }
       );
 
@@ -35,7 +41,10 @@ const SignUpPage = () => {
       passwordRef.current.value = "";
       telephoneRef.current.value = "";
       addressRef.current.value = "";
-
+      cityRef.current.value = "";
+      postcodeRef.current.value = "";
+      countryRef.current.value = "";
+      console.log(data);
       if (data.status === "success") {
         navigate("/login");
       }
@@ -60,6 +69,11 @@ const SignUpPage = () => {
           <br />
           <input ref={addressRef} type="text" placeholder="address" />
           <br />
+          <input ref={cityRef} type="text" placeholder="city" />
+          <br />
+          <input ref={postcodeRef} type="text" placeholder="postcode" />
+          <br />
+          <input ref={countryRef} type="text" placeholder="country" />
 
           <button type="submit" className="btn btn1">
             SIGNUP
